@@ -23,15 +23,18 @@ namespace YemenBooking.Application.Handlers.Queries.Units
         private readonly IUnitRepository _unitRepository;
         private readonly ICurrentUserService _currentUserService;
         private readonly ILogger<GetUnitsByTypeQueryHandler> _logger;
+        private readonly IFieldGroupRepository _groupRepository;
 
         public GetUnitsByTypeQueryHandler(
             IUnitRepository unitRepository,
             ICurrentUserService currentUserService,
-            ILogger<GetUnitsByTypeQueryHandler> logger)
+            ILogger<GetUnitsByTypeQueryHandler> logger,
+            IFieldGroupRepository groupRepository)
         {
             _unitRepository = unitRepository;
             _currentUserService = currentUserService;
             _logger = logger;
+            _groupRepository = groupRepository;
         }
 
         public async Task<PaginatedResult<UnitDto>> Handle(GetUnitsByTypeQuery request, CancellationToken cancellationToken)
@@ -68,39 +71,69 @@ namespace YemenBooking.Application.Handlers.Queries.Units
 
             var totalCount = await query.CountAsync(cancellationToken);
 
-            var units = await query
+            var unitsList = await query
                 .OrderBy(u => u.Name)
                 .Skip((request.PageNumber - 1) * request.PageSize)
                 .Take(request.PageSize)
                 .ToListAsync(cancellationToken);
 
-            var dtos = units.Select(u => new UnitDto
+            // بناء قائمة DTOs مع تجميع القيم الديناميكية ضمن المجمعات
+            var dtos = new List<UnitDto>();
+            foreach (var unit in unitsList)
             {
-                Id = u.Id,
-                PropertyId = u.PropertyId,
-                UnitTypeId = u.UnitTypeId,
-                Name = u.Name,
-                BasePrice = new MoneyDto { Amount = u.BasePrice.Amount, Currency = u.BasePrice.Currency },
-                CustomFeatures = u.CustomFeatures,
-                IsAvailable = u.IsAvailable,
-                PropertyName = u.Property.Name,
-                UnitTypeName = u.UnitType.Name,
-                PricingMethod = u.PricingMethod,
-                FieldValues = u.FieldValues.Select(fv => new UnitFieldValueDto
+                var dto = new UnitDto
                 {
-                    ValueId = fv.Id,
-                    UnitId = fv.UnitId,
-                    FieldId = fv.UnitTypeFieldId,
-                    FieldName = fv.UnitTypeField.FieldName,
-                    DisplayName = fv.UnitTypeField.DisplayName,
-                    FieldValue = fv.FieldValue,
-                    Field = null,
-                    CreatedAt = fv.CreatedAt,
-                    UpdatedAt = fv.UpdatedAt
-                }).ToList()
-            }).ToList();
+                    Id = unit.Id,
+                    PropertyId = unit.PropertyId,
+                    UnitTypeId = unit.UnitTypeId,
+                    Name = unit.Name,
+                    BasePrice = new MoneyDto { Amount = unit.BasePrice.Amount, Currency = unit.BasePrice.Currency },
+                    CustomFeatures = unit.CustomFeatures,
+                    IsAvailable = unit.IsAvailable,
+                    PropertyName = unit.Property.Name,
+                    UnitTypeName = unit.UnitType.Name,
+                    PricingMethod = unit.PricingMethod,
+                    FieldValues = new List<UnitFieldValueDto>()
+                };
 
-            return PaginatedResult<UnitDto>.Create(dtos, request.PageNumber, request.PageSize, totalCount);
+                var groups = await _groupRepository.GetGroupsByPropertyTypeIdAsync(unit.UnitTypeId, cancellationToken);
+                foreach (var group in groups.OrderBy(g => g.SortOrder))
+                {
+                    var groupDto = new FieldGroupWithValuesDto
+                    {
+                        GroupId = group.Id,
+                        GroupName = group.GroupName,
+                        DisplayName = group.DisplayName,
+                        Description = group.Description,
+                        FieldValues = new List<FieldWithValueDto>()
+                    };
+                    foreach (var link in group.FieldGroupFields.OrderBy(l => l.SortOrder))
+                    {
+                        var valueEntity = unit.FieldValues.FirstOrDefault(v => v.UnitTypeFieldId == link.FieldId);
+                        if (valueEntity != null)
+                        {
+                            groupDto.FieldValues.Add(new FieldWithValueDto
+                            {
+                                ValueId = valueEntity.Id,
+                                FieldId = link.FieldId,
+                                FieldName = link.UnitTypeField.FieldName,
+                                DisplayName = link.UnitTypeField.DisplayName,
+                                Value = valueEntity.FieldValue
+                            });
+                        }
+                    }
+                    dto.DynamicFields.Add(groupDto);
+                }
+                dtos.Add(dto);
+            }
+
+            return new PaginatedResult<UnitDto>
+            {
+                Items = dtos,
+                PageNumber = request.PageNumber,
+                PageSize = request.PageSize,
+                TotalCount = totalCount
+            };
         }
     }
 } 

@@ -69,11 +69,18 @@ namespace YemenBooking.Application.DTOs
         /// Pricing calculation method
         /// </summary>
         public PricingMethod PricingMethod { get; set; }
+        
         /// <summary>
         /// قيم الحقول الديناميكية للوحدة
         /// Dynamic field values for the unit
         /// </summary>
         public List<UnitFieldValueDto> FieldValues { get; set; }
+
+        /// <summary>
+        /// قيم الحقول الديناميكية مجمعة ضمن المجموعات الخاصة بها
+        /// Dynamic fields grouped within their field groups
+        /// </summary>
+        public List<FieldGroupWithValuesDto> DynamicFields { get; set; } = new List<FieldGroupWithValuesDto>();
 
         /// <summary>
         /// المسافة من الموقع الحالي بالكيلومترات
