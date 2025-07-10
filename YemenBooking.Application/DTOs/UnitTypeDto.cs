@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace YemenBooking.Application.DTOs
 {
@@ -37,5 +38,17 @@ namespace YemenBooking.Application.DTOs
         /// Default pricing rules (JSON)
         /// </summary>
         public string DefaultPricingRules { get; set; }
+
+        /// <summary>
+        /// حقول الوحدة الديناميكية
+        /// Dynamic fields for the unit type
+        /// </summary>
+        public List<UnitTypeFieldDto> Fields { get; set; } = new List<UnitTypeFieldDto>();
+
+        /// <summary>
+        /// فلاتر البحث الديناميكية المطبقة على الحقول
+        /// Dynamic search filters for the unit type fields
+        /// </summary>
+        public List<SearchFilterDto> Filters { get; set; } = new List<SearchFilterDto>();
     }
 } 
