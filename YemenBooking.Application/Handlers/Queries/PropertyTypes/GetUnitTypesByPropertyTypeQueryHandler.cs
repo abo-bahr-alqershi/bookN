@@ -23,17 +23,20 @@ namespace YemenBooking.Application.Handlers.Queries.PropertyTypes
         private readonly IUnitTypeRepository _repo;
         private readonly IUnitTypeFieldRepository _fieldRepo;
         private readonly ISearchFilterRepository _filterRepo;
+        private readonly IFieldGroupRepository _groupRepo;
         private readonly ILogger<GetUnitTypesByPropertyTypeQueryHandler> _logger;
 
         public GetUnitTypesByPropertyTypeQueryHandler(
             IUnitTypeRepository repo,
             IUnitTypeFieldRepository fieldRepo,
             ISearchFilterRepository filterRepo,
+            IFieldGroupRepository groupRepo,
             ILogger<GetUnitTypesByPropertyTypeQueryHandler> logger)
         {
             _repo = repo;
             _fieldRepo = fieldRepo;
             _filterRepo = filterRepo;
+            _groupRepo = groupRepo;
             _logger = logger;
         }
 
@@ -47,72 +50,72 @@ namespace YemenBooking.Application.Handlers.Queries.PropertyTypes
             var unitTypes = await _repo.GetUnitTypesByPropertyTypeAsync(request.PropertyTypeId, cancellationToken);
 
             var dtos = new List<UnitTypeDto>();
+            var fieldEntities = new Dictionary<Guid, List<UnitTypeField>>();
             foreach (var ut in unitTypes)
             {
+                // جلب الحقول والدوال قبل التجميع
+                if (!fieldEntities.ContainsKey(ut.Id))
+                    fieldEntities[ut.Id] = (await _fieldRepo.GetFieldsByUnitTypeIdAsync(ut.Id, cancellationToken)).ToList();
+                var fields = fieldEntities[ut.Id];
+
                 var dto = new UnitTypeDto
                 {
                     Id = ut.Id,
                     PropertyTypeId = ut.PropertyTypeId,
                     Name = ut.Name,
                     Description = ut.Description,
-                    DefaultPricingRules = ut.DefaultPricingRules
+                    DefaultPricingRules = ut.DefaultPricingRules,
+                    Filters = (await _filterRepo.GetQueryable()
+                        .AsNoTracking()
+                        .Include(sf => sf.UnitTypeField)
+                        .Where(sf => sf.UnitTypeField.UnitTypeId == ut.Id && sf.IsActive)
+                        .OrderBy(sf => sf.SortOrder)
+                        .ToListAsync(cancellationToken))
+                        .Select(sf => new SearchFilterDto
+                        {
+                            FilterId = sf.Id,
+                            FieldId = sf.FieldId,
+                            FilterType = sf.FilterType,
+                            DisplayName = sf.DisplayName,
+                            FilterOptions = JsonSerializer.Deserialize<Dictionary<string, object>>(sf.FilterOptions) ?? new Dictionary<string, object>(),
+                            IsActive = sf.IsActive,
+                            SortOrder = sf.SortOrder,
+                            Field = null
+                        }).ToList(),
+                    FieldGroups = (await _groupRepo.GetGroupsByPropertyTypeIdAsync(ut.Id, cancellationToken))
+                        .OrderBy(g => g.SortOrder)
+                        .Select(g => new FieldGroupDto
+                        {
+                            GroupId = g.Id,
+                            GroupName = g.GroupName,
+                            DisplayName = g.DisplayName,
+                            Description = g.Description,
+                            Fields = g.FieldGroupFields
+                                .OrderBy(link => link.SortOrder)
+                                .Select(link =>
+                                {
+                                    var fe = fields.FirstOrDefault(f => f.Id == link.FieldId);
+                                    return new UnitTypeFieldDto
+                                    {
+                                        FieldId = fe.Id.ToString(),
+                                        PropertyTypeId = fe.UnitTypeId.ToString(),
+                                        FieldTypeId = fe.FieldTypeId.ToString(),
+                                        FieldName = fe.FieldName,
+                                        DisplayName = fe.DisplayName,
+                                        Description = fe.Description,
+                                        FieldOptions = JsonSerializer.Deserialize<Dictionary<string, object>>(fe.FieldOptions) ?? new Dictionary<string, object>(),
+                                        ValidationRules = JsonSerializer.Deserialize<Dictionary<string, object>>(fe.ValidationRules) ?? new Dictionary<string, object>(),
+                                        IsRequired = fe.IsRequired,
+                                        IsSearchable = fe.IsSearchable,
+                                        IsPublic = fe.IsPublic,
+                                        SortOrder = fe.SortOrder,
+                                        Category = fe.Category,
+                                        GroupId = g.Id.ToString()
+                                    };
+                                })
+                                .ToList()
+                        }).ToList()
                 };
-
-                // جلب الحقول الديناميكية
-                var fields = await _fieldRepo.GetFieldsByUnitTypeIdAsync(ut.Id, cancellationToken);
-                dto.Fields = fields.Select(f => new UnitTypeFieldDto
-                {
-                    FieldId = f.Id.ToString(),
-                    PropertyTypeId = f.UnitTypeId.ToString(),
-                    FieldTypeId = f.FieldTypeId.ToString(),
-                    FieldName = f.FieldName,
-                    DisplayName = f.DisplayName,
-                    Description = f.Description,
-                    FieldOptions = JsonSerializer.Deserialize<Dictionary<string, object>>(f.FieldOptions) ?? new Dictionary<string, object>(),
-                    ValidationRules = JsonSerializer.Deserialize<Dictionary<string, object>>(f.ValidationRules) ?? new Dictionary<string, object>(),
-                    IsRequired = f.IsRequired,
-                    IsSearchable = f.IsSearchable,
-                    IsPublic = f.IsPublic,
-                    SortOrder = f.SortOrder,
-                    Category = f.Category,
-                    GroupId = f.FieldGroupFields.FirstOrDefault()?.GroupId.ToString() ?? string.Empty
-                }).ToList();
-
-                // جلب الفلاتر الديناميكية المتعلقة بالحقول
-                var filters = await _filterRepo.GetQueryable()
-                    .AsNoTracking()
-                    .Include(sf => sf.UnitTypeField)
-                    .Where(sf => sf.UnitTypeField.UnitTypeId == ut.Id && sf.IsActive)
-                    .OrderBy(sf => sf.SortOrder)
-                    .ToListAsync(cancellationToken);
-                dto.Filters = filters.Select(sf => new SearchFilterDto
-                {
-                    FilterId = sf.Id,
-                    FieldId = sf.FieldId,
-                    FilterType = sf.FilterType,
-                    DisplayName = sf.DisplayName,
-                    FilterOptions = JsonSerializer.Deserialize<Dictionary<string, object>>(sf.FilterOptions) ?? new Dictionary<string, object>(),
-                    IsActive = sf.IsActive,
-                    SortOrder = sf.SortOrder,
-                    Field = new UnitTypeFieldDto
-                    {
-                        FieldId = sf.UnitTypeField.Id.ToString(),
-                        PropertyTypeId = sf.UnitTypeField.UnitTypeId.ToString(),
-                        FieldTypeId = sf.UnitTypeField.FieldTypeId.ToString(),
-                        FieldName = sf.UnitTypeField.FieldName,
-                        DisplayName = sf.UnitTypeField.DisplayName,
-                        Description = sf.UnitTypeField.Description,
-                        FieldOptions = JsonSerializer.Deserialize<Dictionary<string, object>>(sf.UnitTypeField.FieldOptions) ?? new Dictionary<string, object>(),
-                        ValidationRules = JsonSerializer.Deserialize<Dictionary<string, object>>(sf.UnitTypeField.ValidationRules) ?? new Dictionary<string, object>(),
-                        IsRequired = sf.UnitTypeField.IsRequired,
-                        IsSearchable = sf.UnitTypeField.IsSearchable,
-                        IsPublic = sf.UnitTypeField.IsPublic,
-                        SortOrder = sf.UnitTypeField.SortOrder,
-                        Category = sf.UnitTypeField.Category,
-                        GroupId = sf.UnitTypeField.FieldGroupFields.FirstOrDefault()?.GroupId.ToString() ?? string.Empty
-                    }
-                }).ToList();
-
                 dtos.Add(dto);
             }
 

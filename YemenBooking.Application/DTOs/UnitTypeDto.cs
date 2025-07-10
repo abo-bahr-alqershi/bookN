@@ -40,10 +40,10 @@ namespace YemenBooking.Application.DTOs
         public string DefaultPricingRules { get; set; }
 
         /// <summary>
-        /// حقول الوحدة الديناميكية
-        /// Dynamic fields for the unit type
+        /// المجموعات التي تحوي الحقول الديناميكية لنوع الوحدة
+        /// Groups containing dynamic fields for the unit type
         /// </summary>
-        public List<UnitTypeFieldDto> Fields { get; set; } = new List<UnitTypeFieldDto>();
+        public List<FieldGroupDto> FieldGroups { get; set; } = new List<FieldGroupDto>();
 
         /// <summary>
         /// فلاتر البحث الديناميكية المطبقة على الحقول
