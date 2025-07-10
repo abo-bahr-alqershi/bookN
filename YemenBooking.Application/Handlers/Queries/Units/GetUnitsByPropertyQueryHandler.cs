@@ -86,6 +86,7 @@ namespace YemenBooking.Application.Handlers.Queries.Units
                 PropertyName = u.Property.Name,
                 UnitTypeName = u.UnitType.Name,
                 PricingMethod = u.PricingMethod,
+                // Keep only dynamic field values, omit field definitions
                 FieldValues = u.FieldValues.Select(fv => new UnitFieldValueDto
                 {
                     ValueId = fv.Id,
@@ -94,23 +95,7 @@ namespace YemenBooking.Application.Handlers.Queries.Units
                     FieldName = fv.UnitTypeField.FieldName,
                     DisplayName = fv.UnitTypeField.DisplayName,
                     FieldValue = fv.FieldValue,
-                    Field = new UnitTypeFieldDto
-                    {
-                        FieldId = fv.UnitTypeField.Id.ToString(),
-                        PropertyTypeId = fv.UnitTypeField.UnitTypeId.ToString(),
-                        FieldTypeId = fv.UnitTypeField.FieldTypeId.ToString(),
-                        FieldName = fv.UnitTypeField.FieldName,
-                        DisplayName = fv.UnitTypeField.DisplayName,
-                        Description = fv.UnitTypeField.Description,
-                        FieldOptions = JsonSerializer.Deserialize<Dictionary<string, object>>(fv.UnitTypeField.FieldOptions) ?? new Dictionary<string, object>(),
-                        ValidationRules = JsonSerializer.Deserialize<Dictionary<string, object>>(fv.UnitTypeField.ValidationRules) ?? new Dictionary<string, object>(),
-                        IsRequired = fv.UnitTypeField.IsRequired,
-                        IsSearchable = fv.UnitTypeField.IsSearchable,
-                        IsPublic = fv.UnitTypeField.IsPublic,
-                        SortOrder = fv.UnitTypeField.SortOrder,
-                        Category = fv.UnitTypeField.Category,
-                        GroupId = fv.UnitTypeField.FieldGroupFields.FirstOrDefault()?.GroupId.ToString() ?? string.Empty
-                    },
+                    Field = null,
                     CreatedAt = fv.CreatedAt,
                     UpdatedAt = fv.UpdatedAt
                 }).ToList()
