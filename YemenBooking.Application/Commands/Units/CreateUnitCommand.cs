@@ -1,0 +1,48 @@
+using MediatR;
+using YemenBooking.Application.DTOs;
+using YemenBooking.Core.Enums;
+
+namespace YemenBooking.Application.Commands.Units;
+
+/// <summary>
+/// أمر لإنشاء وحدة جديدة في العقار
+/// Command to create a new unit in a property
+/// </summary>
+public class CreateUnitCommand : IRequest<ResultDto<Guid>>
+{
+    /// <summary>
+    /// معرف العقار
+    /// Property ID
+    /// </summary>
+    public Guid PropertyId { get; set; }
+
+    /// <summary>
+    /// معرف نوع الوحدة
+    /// Unit type ID
+    /// </summary>
+    public Guid UnitTypeId { get; set; }
+
+    /// <summary>
+    /// اسم الوحدة
+    /// Unit name
+    /// </summary>
+    public string Name { get; set; } = string.Empty;
+
+    /// <summary>
+    /// السعر الأساسي للوحدة
+    /// Base price of the unit
+    /// </summary>
+    public MoneyDto BasePrice { get; set; }
+
+    /// <summary>
+    /// الميزات المخصصة للوحدة
+    /// Custom features of the unit (JSON)
+    /// </summary>
+    public string CustomFeatures { get; set; } = string.Empty;
+
+    /// <summary>
+    /// طريقة حساب السعر
+    /// Pricing calculation method (Hourly, Daily, Weekly, Monthly)
+    /// </summary>
+    public PricingMethod PricingMethod { get; set; }
+} 

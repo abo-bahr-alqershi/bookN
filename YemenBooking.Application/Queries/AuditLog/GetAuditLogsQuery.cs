@@ -1,0 +1,43 @@
+using System;
+using System.Collections.Generic;
+using MediatR;
+using YemenBooking.Application.DTOs;
+
+namespace YemenBooking.Application.Queries.AuditLog;
+
+/// <summary>
+/// استعلام للحصول على سجلات التدقيق مع فلترة حسب المستخدم أو الفترة الزمنية
+/// Query to get audit logs filtered by user or date range
+/// </summary>
+public class GetAuditLogsQuery : IRequest<ResultDto<IEnumerable<AuditLogDto>>>
+{
+    /// <summary>
+    /// معرف المستخدم (اختياري)
+    /// User identifier (optional)
+    /// </summary>
+    public Guid? UserId { get; set; }
+
+    /// <summary>
+    /// تاريخ بداية الفلترة (اختياري)
+    /// Start date for filtering (optional)
+    /// </summary>
+    public DateTime? From { get; set; }
+
+    /// <summary>
+    /// تاريخ نهاية الفلترة (اختياري)
+    /// End date for filtering (optional)
+    /// </summary>
+    public DateTime? To { get; set; }
+
+    /// <summary>
+    /// مصطلح البحث النصي في سجلات التدقيق (اختياري)
+    /// Full-text search term in audit logs (optional)
+    /// </summary>
+    public string? SearchTerm { get; set; }
+
+    /// <summary>
+    /// نوع العملية للفلترة (اختياري)
+    /// Operation type filter (optional)
+    /// </summary>
+    public string? OperationType { get; set; }
+} 

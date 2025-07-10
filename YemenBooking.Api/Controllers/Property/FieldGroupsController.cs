@@ -1,0 +1,45 @@
+using System;
+using System.Threading.Tasks;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using YemenBooking.Application.Queries.FieldGroups;
+
+namespace YemenBooking.Api.Controllers.Property
+{
+    /// <summary>
+    /// متحكم بعرض مجموعات حقول العقار لأصحاب العقارات
+    /// Controller for property owners to view field groups
+    /// </summary>
+    [ApiController]
+    [Route("api/property/field-groups")]
+    [Authorize(Roles = "PropertyOwner")]
+    public class FieldGroupsController : BasePropertyController
+    {
+        public FieldGroupsController(IMediator mediator) : base(mediator) { }
+
+        /// <summary>
+        /// جلب بيانات مجموعة الحقول حسب المعرف
+        /// Get field group by id
+        /// </summary>
+        [HttpGet("{groupId}")]
+        public async Task<IActionResult> GetFieldGroupById(string groupId)
+        {
+            var query = new GetFieldGroupByIdQuery { GroupId = groupId };
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// جلب مجموعات الحقول حسب نوع العقار
+        /// Get field groups by property type
+        /// </summary>
+        [HttpGet("property-type/{propertyTypeId}")]
+        public async Task<IActionResult> GetFieldGroupsByPropertyType(string propertyTypeId)
+        {
+            var query = new GetFieldGroupsByPropertyTypeQuery { PropertyTypeId = propertyTypeId };
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
+    }
+} 

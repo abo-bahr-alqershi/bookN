@@ -1,0 +1,290 @@
+erDiagram
+    field_types {
+        string field_type_id PK
+        string name
+        string display_name
+        json validation_rules
+        boolean is_active
+        boolean is_deleted
+        datetime deleted_at
+    }
+    property_types {
+        string property_type_id PK
+        string name
+        string display_name
+        boolean is_active
+        boolean is_deleted
+        datetime deleted_at
+    }
+    property_type_fields {
+        string field_id PK
+        string property_type_id FK
+        string field_type_id FK
+        string field_name
+        string display_name
+        string description
+        json field_options
+        json validation_rules
+        boolean is_required
+        boolean is_searchable
+        boolean is_public
+        int sort_order
+        string category
+        boolean is_for_units
+        boolean is_active
+        boolean is_deleted
+        datetime deleted_at
+    }
+    field_groups {
+        string group_id PK
+        string property_type_id FK
+        string group_name
+        string display_name
+        string description
+        int sort_order
+        boolean is_collapsible
+        boolean is_expanded_by_default
+        boolean is_deleted
+        datetime deleted_at
+    }
+    field_group_fields {
+        string field_id FK
+        string group_id FK
+        int sort_order
+        boolean is_deleted
+        datetime deleted_at
+    }
+    search_filters {
+        string filter_id PK
+        string field_id FK
+        string filter_type
+        string display_name
+        json filter_options
+        boolean is_active
+        int sort_order
+        boolean is_deleted
+        datetime deleted_at
+    }
+    properties {
+        string property_id PK
+        string owner_id FK
+        string type_id FK
+        string name
+        string address
+        string city
+        decimal latitude
+        decimal longitude
+        int star_rating
+        text description
+        json dynamic_fields
+        boolean is_approved
+        datetime created_at
+        boolean is_deleted
+        datetime deleted_at
+    }
+    units {
+        string unit_id PK
+        string property_id FK
+        string unit_type_id FK
+        string name
+        decimal base_price
+        json custom_features
+        json dynamic_fields
+        boolean is_available
+        boolean is_deleted
+        datetime deleted_at
+    }
+    unit_field_values {
+        string value_id PK
+        string unit_id FK
+        string field_id FK
+        text field_value
+        datetime created_at
+        datetime updated_at
+        boolean is_deleted
+        datetime deleted_at
+    }
+    property_field_values {
+        string value_id PK
+        string property_id FK
+        string field_id FK
+        text field_value
+        datetime created_at
+        datetime updated_at
+        boolean is_deleted
+        datetime deleted_at
+    }
+    users {
+        string user_id PK
+        string email
+        string full_name
+        string password_hash
+        string phone_number
+        string profile_image
+        boolean is_active
+        datetime created_at
+        datetime updated_at
+        datetime deactivated_at
+    }
+    roles {
+        string role_id PK
+        string name
+        string description
+    }
+    user_roles {
+        string user_id FK
+        string role_id FK
+    }
+    admins_actions {
+        string action_id PK
+        string user_id FK
+        string action_type
+        string entity_name
+        string entity_id
+        datetime action_time
+        json details
+    }
+    amenities {
+        string amenity_id PK
+        string name
+        string display_name
+    }
+    property_amenities {
+        string property_id FK
+        string amenity_id FK
+    }
+    property_type_amenities {
+        string property_type_id FK
+        string amenity_id FK
+    }
+    unit_types {
+        string unit_type_id PK
+        string name
+        string display_name
+    }
+    property_policies {
+        string policy_id PK
+        string property_id FK
+        string name
+        string description
+    }
+    property_images {
+        string image_id PK
+        string property_id FK
+        string url
+        string caption
+        string alt_text
+        string category
+        boolean is_main
+        datetime created_at
+    }
+    booking_services {
+        string booking_id FK
+        string service_id FK
+    }
+    property_services {
+        string property_id FK
+        string service_id FK
+    }
+    services {
+        string service_id PK
+        string name
+        decimal price
+    }
+    bookings {
+        string booking_id PK
+        string user_id FK
+        string property_id FK
+        string unit_id FK
+        datetime check_in
+        datetime check_out
+        int guests_count
+        Money total_price
+        string status
+        datetime booked_at
+    }
+    payments {
+        string payment_id PK
+        string booking_id FK
+        Money amount
+        string method
+        string transaction_id
+        string status
+        datetime processed_at
+        string currency
+        string notes
+    }
+    notifications {
+        string notification_id PK
+        string type
+        string title
+        string message
+        string recipient_id FK
+        string sender_id FK
+        datetime created_at
+        boolean is_read
+        datetime read_at
+    }
+    reviews {
+        string review_id PK
+        string booking_id FK
+        string user_id FK
+        string property_id FK
+        decimal rating
+        string comment
+        datetime created_at
+    }
+    review_images {
+        string image_id PK
+        string review_id FK
+        string url
+        datetime created_at
+    }
+    reports {
+        string report_id PK
+        string name
+        string data
+        datetime created_at
+    }
+    audit_logs {
+        string log_id PK
+        string user_id FK
+        string action
+        string entity_name
+        string entity_id
+        datetime timestamp
+        json details
+    }
+
+    field_types ||--o{ property_type_fields : defines_type
+    property_types ||--o{ property_type_fields : defines_fields
+    property_types ||--o{ field_groups : has_groups
+    field_groups ||--o{ field_group_fields : groups_fields
+    property_type_fields ||--o{ field_group_fields : field_in_group
+    property_type_fields ||--o{ unit_field_values : stores_values
+    property_type_fields ||--o{ property_field_values : stores_values
+    property_type_fields ||--o{ search_filters : used_in_filters
+    properties ||--o{ units : has_units
+    properties ||--o{ property_field_values : stores_values
+    properties ||--o{ property_policies : has_policies
+    properties ||--o{ property_amenities : has_amenities
+    properties ||--o{ property_images : has_images
+    property_types ||--o{ property_type_amenities : has_amenities
+    amenities ||--o{ property_amenities : amenity_for_property
+    amenities ||--o{ property_type_amenities : amenity_for_type
+    units ||--o{ unit_field_values : has_values
+    units ||--o{ bookings : booked_units
+    bookings ||--o{ payments : has_payments
+    bookings ||--o{ reviews : has_reviews
+    bookings ||--o{ booking_services : includes_services
+    services ||--o{ booking_services : services_in_booking
+    services ||--o{ property_services : services_for_property
+    properties ||--o{ property_services : has_services
+    users ||--o{ bookings : makes_bookings
+    users ||--o{ reviews : writes_reviews
+    users ||--o{ notifications : receives_notifications
+    users ||--o{ user_roles : assigned_roles
+    roles ||--o{ user_roles : users_assigned
+    users ||--o{ admins_actions : performed_actions
+    users ||--o{ audit_logs : logs_created
+    reports ||--|{ audit_logs : logs_reports

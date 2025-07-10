@@ -1,0 +1,102 @@
+using System;
+using YemenBooking.Core.Enums;
+
+namespace YemenBooking.Application.DTOs
+{
+    /// <summary>
+    /// DTO لبيانات صورة العقار
+    /// DTO for property image data
+    /// </summary>
+    public class PropertyImageDto
+    {
+        /// <summary>
+        /// معرف الصورة
+        /// Image identifier
+        /// </summary>
+        public Guid Id { get; set; }
+
+        /// <summary>
+        /// معرف العقار (إن وجد)
+        /// Property identifier (if assigned)
+        /// </summary>
+        public Guid? PropertyId { get; set; }
+
+        /// <summary>
+        /// معرف الوحدة (إن وجد)
+        /// Unit identifier (if assigned)
+        /// </summary>
+        public Guid? UnitId { get; set; }
+
+        /// <summary>
+        /// اسم الملف
+        /// File name
+        /// </summary>
+        public string Name { get; set; } = string.Empty;
+
+        /// <summary>
+        /// مسار الصورة
+        /// Image URL
+        /// </summary>
+        public string Url { get; set; } = string.Empty;
+
+        /// <summary>
+        /// حجم الملف بالبايت
+        /// Size in bytes
+        /// </summary>
+        public long SizeBytes { get; set; }
+
+        /// <summary>
+        /// نوع المحتوى
+        /// Content type
+        /// </summary>
+        public string Type { get; set; } = string.Empty;
+
+        /// <summary>
+        /// فئة الصورة
+        /// Image category
+        /// </summary>
+        public ImageCategory Category { get; set; }
+
+        /// <summary>
+        /// تعليق توضيحي للصورة
+        /// Image caption
+        /// </summary>
+        public string Caption { get; set; } = string.Empty;
+
+        /// <summary>
+        /// نص بديل للصورة
+        /// Image alt text
+        /// </summary>
+        public string AltText { get; set; } = string.Empty;
+
+        /// <summary>
+        /// وسوم الصورة (JSON)
+        /// Image tags (JSON)
+        /// </summary>
+        public string Tags { get; set; } = string.Empty;
+
+        /// <summary>
+        /// هل هي الصورة الرئيسية
+        /// Is main image
+        /// </summary>
+        public bool IsMain { get; set; }
+
+        /// <summary>
+        /// ترتيب العرض
+        /// Display order
+        /// </summary>
+        public int DisplayOrder { get; set; }
+
+        /// <summary>
+        /// تاريخ الرفع
+        /// Upload date
+        /// </summary>
+        public DateTime UploadedAt { get; set; }
+
+        /// <summary>
+        /// حالة الصورة
+        /// Image status
+        /// </summary>
+        public ImageStatus Status { get; set; }
+    }
+} 
