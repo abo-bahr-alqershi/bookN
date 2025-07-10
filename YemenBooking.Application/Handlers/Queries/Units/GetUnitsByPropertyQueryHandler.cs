@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
@@ -86,8 +88,31 @@ namespace YemenBooking.Application.Handlers.Queries.Units
                 PricingMethod = u.PricingMethod,
                 FieldValues = u.FieldValues.Select(fv => new UnitFieldValueDto
                 {
+                    ValueId = fv.Id,
+                    UnitId = fv.UnitId,
                     FieldId = fv.UnitTypeFieldId,
-                    FieldValue = fv.FieldValue
+                    FieldName = fv.UnitTypeField.FieldName,
+                    DisplayName = fv.UnitTypeField.DisplayName,
+                    FieldValue = fv.FieldValue,
+                    Field = new UnitTypeFieldDto
+                    {
+                        FieldId = fv.UnitTypeField.Id.ToString(),
+                        PropertyTypeId = fv.UnitTypeField.UnitTypeId.ToString(),
+                        FieldTypeId = fv.UnitTypeField.FieldTypeId.ToString(),
+                        FieldName = fv.UnitTypeField.FieldName,
+                        DisplayName = fv.UnitTypeField.DisplayName,
+                        Description = fv.UnitTypeField.Description,
+                        FieldOptions = JsonSerializer.Deserialize<Dictionary<string, object>>(fv.UnitTypeField.FieldOptions) ?? new Dictionary<string, object>(),
+                        ValidationRules = JsonSerializer.Deserialize<Dictionary<string, object>>(fv.UnitTypeField.ValidationRules) ?? new Dictionary<string, object>(),
+                        IsRequired = fv.UnitTypeField.IsRequired,
+                        IsSearchable = fv.UnitTypeField.IsSearchable,
+                        IsPublic = fv.UnitTypeField.IsPublic,
+                        SortOrder = fv.UnitTypeField.SortOrder,
+                        Category = fv.UnitTypeField.Category,
+                        GroupId = fv.UnitTypeField.FieldGroupFields.FirstOrDefault()?.GroupId.ToString() ?? string.Empty
+                    },
+                    CreatedAt = fv.CreatedAt,
+                    UpdatedAt = fv.UpdatedAt
                 }).ToList()
             }).ToList();
 
