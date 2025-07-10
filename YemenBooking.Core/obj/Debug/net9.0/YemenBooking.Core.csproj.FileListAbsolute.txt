@@ -42,3 +42,4 @@
 /home/ameen/Desktop/YemenBookN/Backend/YemenBooking.Core/obj/Debug/net9.0/refint/YemenBooking.Core.dll
 /home/ameen/Desktop/YemenBookN/Backend/YemenBooking.Core/obj/Debug/net9.0/YemenBooking.Core.pdb
 /home/ameen/Desktop/YemenBookN/Backend/YemenBooking.Core/obj/Debug/net9.0/ref/YemenBooking.Core.dll
+/home/ameen/Desktop/YemenBookN/Backend/YemenBooking.Core/obj/Debug/net9.0/YemenBooking.Core.sourcelink.json
