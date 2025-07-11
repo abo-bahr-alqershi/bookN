@@ -80,14 +80,14 @@ public class CheckOutCommandHandler : IRequestHandler<CheckOutCommand, ResultDto
                 cancellationToken);
 
             // نشر الحدث
-            await _eventPublisher.PublishEventAsync(new BookingCheckedOutEvent
-            {
-                BookingId = booking.Id,
-                UserId = booking.UserId,
-                CheckOutDate = booking.ActualCheckOutDate.Value,
-                CompletedBy = _currentUserService.UserId,
-                CompletedAt = DateTime.UtcNow
-            }, cancellationToken);
+            // await _eventPublisher.PublishEventAsync(new BookingCheckedOutEvent
+            // {
+            //     BookingId = booking.Id,
+            //     UserId = booking.UserId,
+            //     CheckOutDate = booking.ActualCheckOutDate.Value,
+            //     CompletedBy = _currentUserService.UserId,
+            //     CompletedAt = DateTime.UtcNow
+            // }, cancellationToken);
 
             _logger.LogInformation("تم تسجيل خروج الحجز بنجاح: {BookingId}", booking.Id);
         });

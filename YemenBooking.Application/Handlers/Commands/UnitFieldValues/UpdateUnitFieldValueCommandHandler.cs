@@ -181,18 +181,18 @@ public class UpdateUnitFieldValueCommandHandler : IRequestHandler<UpdateUnitFiel
                 cancellationToken);
 
             // الخطوة 12: نشر الحدث
-            await _eventPublisher.PublishEventAsync(new UnitFieldValueUpdatedEvent
-            {
-                ValueId = updatedValue.Id,
-                UnitId = updatedValue.UnitId,
-                PropertyId = unit.PropertyId,
-                FieldId = updatedValue.UnitTypeFieldId,
-                FieldName = field.FieldName,
-                OldFieldValue = oldValue.FieldValue,
-                NewFieldValue = updatedValue.FieldValue,
-                UpdatedBy = _currentUserService.UserId,
-                UpdatedAt = updatedValue.UpdatedAt
-            }, cancellationToken);
+            // await _eventPublisher.PublishEventAsync(new UnitFieldValueUpdatedEvent
+            // {
+            //     ValueId = updatedValue.Id,
+            //     UnitId = updatedValue.UnitId,
+            //     PropertyId = unit.PropertyId,
+            //     FieldId = updatedValue.UnitTypeFieldId,
+            //     FieldName = field.FieldName,
+            //     OldFieldValue = oldValue.FieldValue,
+            //     NewFieldValue = updatedValue.FieldValue,
+            //     UpdatedBy = _currentUserService.UserId,
+            //     UpdatedAt = updatedValue.UpdatedAt
+            // }, cancellationToken);
 
             _logger.LogInformation("تم تحديث قيمة حقل الوحدة بنجاح: {ValueId}", updatedValue.Id);
 

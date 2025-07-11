@@ -35,7 +35,7 @@ public class SearchFilterConfiguration : IEntityTypeConfiguration<SearchFilter>
             .HasMaxLength(100);
 
         builder.Property(sf => sf.FilterOptions)
-            .HasColumnType("nvarchar(max)");
+            .HasColumnType("TEXT");
 
         builder.Property(sf => sf.SortOrder)
             .HasDefaultValue(0);

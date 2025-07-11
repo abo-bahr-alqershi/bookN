@@ -39,7 +39,7 @@ public class AdminActionConfiguration : IEntityTypeConfiguration<AdminAction>
             .HasComment("نوع الإجراء");
 
         builder.Property(aa => aa.Changes)
-            .HasColumnType("nvarchar(max)")
+            .HasColumnType("TEXT")
             .HasComment("تغييرات الإجراء");
 
         builder.Property(aa => aa.Timestamp)

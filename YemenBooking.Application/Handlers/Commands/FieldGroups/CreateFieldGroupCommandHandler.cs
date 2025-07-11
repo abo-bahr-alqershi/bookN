@@ -139,15 +139,15 @@ public class CreateFieldGroupCommandHandler : IRequestHandler<CreateFieldGroupCo
                 cancellationToken);
 
             // الخطوة 8: نشر الحدث
-            await _eventPublisher.PublishEventAsync(new FieldGroupCreatedEvent
-            {
-                FieldGroupId = createdFieldGroup.Id,
-                PropertyTypeId = createdFieldGroup.UnitTypeId,
-                GroupName = createdFieldGroup.GroupName,
-                DisplayName = createdFieldGroup.DisplayName,
-                CreatedBy = _currentUserService.UserId,
-                CreatedAt = createdFieldGroup.CreatedAt
-            }, cancellationToken);
+            // await _eventPublisher.PublishEventAsync(new FieldGroupCreatedEvent
+            // {
+            //     FieldGroupId = createdFieldGroup.Id,
+            //     PropertyTypeId = createdFieldGroup.UnitTypeId,
+            //     GroupName = createdFieldGroup.GroupName,
+            //     DisplayName = createdFieldGroup.DisplayName,
+            //     CreatedBy = _currentUserService.UserId,
+            //     CreatedAt = createdFieldGroup.CreatedAt
+            // }, cancellationToken);
 
             _logger.LogInformation("تم إنشاء مجموعة الحقول بنجاح: {FieldGroupId}", createdFieldGroup.Id);
 

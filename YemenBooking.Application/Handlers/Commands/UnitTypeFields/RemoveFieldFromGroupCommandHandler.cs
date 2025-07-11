@@ -63,13 +63,13 @@ namespace YemenBooking.Application.Handlers.Commands.UnitTypeFields
                 null,
                 cancellationToken);
 
-            await _eventPublisher.PublishEventAsync(new FieldRemovedFromGroupEvent
-            {
-                FieldId = fieldId,
-                GroupId = groupId,
-                RemovedBy = _currentUserService.UserId,
-                RemovedAt = DateTime.UtcNow
-            }, cancellationToken);
+            // await _eventPublisher.PublishEventAsync(new FieldRemovedFromGroupEvent
+            // {
+            //     FieldId = fieldId,
+            //     GroupId = groupId,
+            //     RemovedBy = _currentUserService.UserId,
+            //     RemovedAt = DateTime.UtcNow
+            // }, cancellationToken);
 
             _logger.LogInformation("اكتمل إزالة الحقل من المجموعة بنجاح: FieldId={FieldId}, GroupId={GroupId}", fieldId, groupId);
             return ResultDto<bool>.Succeeded(true, "تمت إزالة الحقل من المجموعة بنجاح");

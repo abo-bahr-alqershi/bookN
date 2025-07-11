@@ -68,13 +68,13 @@ namespace YemenBooking.Application.Handlers.Commands.SearchFilters
                     null,
                     cancellationToken);
 
-                await _eventPublisher.PublishEventAsync(new SearchFilterStatusToggledEvent
-                {
-                    FilterId = existing.Id,
-                    IsActive = request.IsActive,
-                    ToggledBy = _currentUserService.UserId,
-                    ToggledAt = DateTime.UtcNow
-                }, cancellationToken);
+                // await _eventPublisher.PublishEventAsync(new SearchFilterStatusToggledEvent
+                // {
+                //     FilterId = existing.Id,
+                //     IsActive = request.IsActive,
+                //     ToggledBy = _currentUserService.UserId,
+                //     ToggledAt = DateTime.UtcNow
+                // }, cancellationToken);
 
                 _logger.LogInformation("تم تغيير حالة فلتر البحث بنجاح: {FilterId}", existing.Id);
             });

@@ -71,13 +71,13 @@ namespace YemenBooking.Application.Handlers.Commands.UnitTypeFields
                     null,
                     cancellationToken);
 
-                await _eventPublisher.PublishEventAsync(new UnitTypeFieldStatusToggledEvent
-                {
-                    FieldId = existing.Id,
-                    IsActive = request.IsActive,
-                    ToggledBy = _currentUserService.UserId,
-                    ToggledAt = DateTime.UtcNow
-                }, cancellationToken);
+                // await _eventPublisher.PublishEventAsync(new UnitTypeFieldStatusToggledEvent
+                // {
+                //     FieldId = existing.Id,
+                //     IsActive = request.IsActive,
+                //     ToggledBy = _currentUserService.UserId,
+                //     ToggledAt = DateTime.UtcNow
+                // }, cancellationToken);
 
                 _logger.LogInformation("تم تغيير حالة الحقل بنجاح: {FieldId}", existing.Id);
             });

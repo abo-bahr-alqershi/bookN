@@ -34,7 +34,7 @@ public class FieldTypeConfiguration : IEntityTypeConfiguration<FieldType>
             .HasMaxLength(100);
 
         builder.Property(ft => ft.ValidationRules)
-            .HasColumnType("nvarchar(max)");
+            .HasColumnType("TEXT");
 
         builder.HasIndex(ft => ft.Name)
             .IsUnique();

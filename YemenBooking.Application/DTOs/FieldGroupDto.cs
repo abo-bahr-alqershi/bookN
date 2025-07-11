@@ -13,7 +13,12 @@ namespace YemenBooking.Application.DTOs
         /// معرف المجموعة
         /// Group identifier
         /// </summary>
-        public Guid GroupId { get; set; }
+        public string GroupId { get; set; }
+        /// <summary>
+        /// معرف نوع الوحدة
+        /// Property type identifier
+        /// </summary>
+        public string PropertyTypeId { get; set; }
 
         /// <summary>
         /// اسم المجموعة
@@ -32,6 +37,24 @@ namespace YemenBooking.Application.DTOs
         /// Description of the group
         /// </summary>
         public string Description { get; set; }
+        
+        /// <summary>
+        /// ترتيب المجموعة
+        /// Sort order
+        /// </summary>
+        public int SortOrder { get; set; }
+        
+        /// <summary>
+        /// قابلية الطي للمجموعة
+        /// Whether the group is collapsible
+        /// </summary>
+        public bool IsCollapsible { get; set; }
+        
+        /// <summary>
+        /// حالة التوسع الافتراضي للمجموعة
+        /// Default expanded state
+        /// </summary>
+        public bool IsExpandedByDefault { get; set; }
 
         /// <summary>
         /// حقول المجموعة

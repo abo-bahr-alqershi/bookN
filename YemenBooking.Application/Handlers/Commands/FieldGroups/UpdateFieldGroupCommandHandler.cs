@@ -139,15 +139,15 @@ public class UpdateFieldGroupCommandHandler : IRequestHandler<UpdateFieldGroupCo
                 cancellationToken);
 
             // الخطوة 8: نشر الحدث
-            await _eventPublisher.PublishEventAsync(new FieldGroupUpdatedEvent
-            {
-                FieldGroupId = updatedFieldGroup.Id,
-                PropertyTypeId = updatedFieldGroup.UnitTypeId,
-                GroupName = updatedFieldGroup.GroupName,
-                DisplayName = updatedFieldGroup.DisplayName,
-                UpdatedBy = _currentUserService.UserId,
-                UpdatedAt = updatedFieldGroup.UpdatedAt
-            }, cancellationToken);
+            // await _eventPublisher.PublishEventAsync(new FieldGroupUpdatedEvent
+            // {
+            //     FieldGroupId = updatedFieldGroup.Id,
+            //     PropertyTypeId = updatedFieldGroup.UnitTypeId,
+            //     GroupName = updatedFieldGroup.GroupName,
+            //     DisplayName = updatedFieldGroup.DisplayName,
+            //     UpdatedBy = _currentUserService.UserId,
+            //     UpdatedAt = updatedFieldGroup.UpdatedAt
+            // }, cancellationToken);
 
             _logger.LogInformation("تم تحديث مجموعة الحقول بنجاح: {GroupId}", updatedFieldGroup.Id);
 

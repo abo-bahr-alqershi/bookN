@@ -113,13 +113,13 @@ namespace YemenBooking.Application.Handlers.Commands.UnitTypeFields
                     null,
                     cancellationToken);
 
-                await _eventPublisher.PublishEventAsync(new MultipleFieldsAssignedToGroupEvent
-                {
-                    GroupId = groupId,
-                    FieldIds = fieldIds,
-                    AssignedBy = _currentUserService.UserId,
-                    AssignedAt = DateTime.UtcNow
-                }, cancellationToken);
+                // await _eventPublisher.PublishEventAsync(new MultipleFieldsAssignedToGroupEvent
+                // {
+                //     GroupId = groupId,
+                //     FieldIds = fieldIds,
+                //     AssignedBy = _currentUserService.UserId,
+                //     AssignedAt = DateTime.UtcNow
+                // }, cancellationToken);
 
                 _logger.LogInformation("اكتمل إسناد الحقول إلى المجموعة بنجاح: Count={Count}", fieldIds.Count);
             });

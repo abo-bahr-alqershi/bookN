@@ -41,7 +41,7 @@ public class ReviewConfiguration : IEntityTypeConfiguration<Review>
             .HasComment("تقييم القيمة");
 
         builder.Property(r => r.Comment)
-            .HasColumnType("nvarchar(max)")
+            .HasColumnType("TEXT")
             .HasComment("تعليق التقييم");
 
         builder.Property(r => r.CreatedAt)

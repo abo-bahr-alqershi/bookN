@@ -83,14 +83,14 @@ namespace YemenBooking.Application.Handlers.Commands.UnitTypeFields
                     cancellationToken);
 
                 // نشر الحدث
-                await _eventPublisher.PublishEventAsync(new UnitTypeFieldDeletedEvent
-                {
-                    FieldId = existingField.Id,
-                    UnitTypeId = existingField.UnitTypeId,
-                    FieldName = existingField.FieldName,
-                    DeletedBy = _currentUserService.UserId,
-                    DeletedAt = DateTime.UtcNow
-                }, cancellationToken);
+                // await _eventPublisher.PublishEventAsync(new UnitTypeFieldDeletedEvent
+                // {
+                //     FieldId = existingField.Id,
+                //     UnitTypeId = existingField.UnitTypeId,
+                //     FieldName = existingField.FieldName,
+                //     DeletedBy = _currentUserService.UserId,
+                //     DeletedAt = DateTime.UtcNow
+                // }, cancellationToken);
 
                 _logger.LogInformation("تم حذف حقل نوع الوحدة بنجاح: {FieldId}", existingField.Id);
             });

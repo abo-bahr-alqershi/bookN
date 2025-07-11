@@ -176,15 +176,15 @@ public class UpdateUnitTypeFieldCommandHandler : IRequestHandler<UpdateUnitTypeF
                 cancellationToken);
 
             // الخطوة 10: نشر الحدث
-            await _eventPublisher.PublishEventAsync(new UnitTypeFieldUpdatedEvent
-            {
-                FieldId = updatedField.Id,
-                UnitTypeId = updatedField.UnitTypeId,
-                FieldName = updatedField.FieldName,
-                DisplayName = updatedField.DisplayName,
-                UpdatedBy = _currentUserService.UserId,
-                UpdatedAt = updatedField.UpdatedAt
-            }, cancellationToken);
+            // await _eventPublisher.PublishEventAsync(new UnitTypeFieldUpdatedEvent
+            // {
+            //     FieldId = updatedField.Id,
+            //     UnitTypeId = updatedField.UnitTypeId,
+            //     FieldName = updatedField.FieldName,
+            //     DisplayName = updatedField.DisplayName,
+            //     UpdatedBy = _currentUserService.UserId,
+            //     UpdatedAt = updatedField.UpdatedAt
+            // }, cancellationToken);
 
             _logger.LogInformation("تم تحديث الحقل الديناميكي بنجاح: {FieldId}", updatedField.Id);
 

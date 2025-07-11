@@ -94,14 +94,14 @@ namespace YemenBooking.Application.Handlers.Commands.FieldGroups
                     cancellationToken);
 
                 // نشر الحدث
-                await _eventPublisher.PublishEventAsync(new FieldGroupDeletedEvent
-                {
-                    GroupId = existingGroup.Id,
-                    PropertyTypeId = existingGroup.UnitTypeId,
-                    GroupName = existingGroup.GroupName,
-                    DeletedBy = _currentUserService.UserId,
-                    DeletedAt = DateTime.UtcNow
-                }, cancellationToken);
+                // await _eventPublisher.PublishEventAsync(new FieldGroupDeletedEvent
+                // {
+                //     GroupId = existingGroup.Id,
+                //     PropertyTypeId = existingGroup.UnitTypeId,
+                //     GroupName = existingGroup.GroupName,
+                //     DeletedBy = _currentUserService.UserId,
+                //     DeletedAt = DateTime.UtcNow
+                // }, cancellationToken);
 
                 _logger.LogInformation("تم حذف مجموعة الحقول بنجاح: {GroupId}", existingGroup.Id);
             });

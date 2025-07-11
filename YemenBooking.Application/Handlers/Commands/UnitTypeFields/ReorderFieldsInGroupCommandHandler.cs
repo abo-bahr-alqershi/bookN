@@ -86,13 +86,13 @@ namespace YemenBooking.Application.Handlers.Commands.UnitTypeFields
                     null,
                     cancellationToken);
 
-                await _eventPublisher.PublishEventAsync(new FieldsReorderedInGroupEvent
-                {
-                    GroupId = groupId,
-                    OrderedFieldIds = fieldIds,
-                    ReorderedBy = _currentUserService.UserId,
-                    ReorderedAt = DateTime.UtcNow
-                }, cancellationToken);
+                // await _eventPublisher.PublishEventAsync(new FieldsReorderedInGroupEvent
+                // {
+                //     GroupId = groupId,
+                //     OrderedFieldIds = fieldIds,
+                //     ReorderedBy = _currentUserService.UserId,
+                //     ReorderedAt = DateTime.UtcNow
+                // }, cancellationToken);
 
                 _logger.LogInformation("اكتمل إعادة ترتيب الحقول بنجاح: Count={Count}", fieldIds.Count);
             });

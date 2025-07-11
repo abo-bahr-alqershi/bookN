@@ -24,8 +24,8 @@ public class PropertyTypeAmenityConfiguration : IEntityTypeConfiguration<Propert
         builder.Property(pta => pta.AmenityId).IsRequired();
         builder.Property(pta => pta.IsDefault).HasDefaultValue(false);
         
-        // تكوين المفتاح الأساسي المركب
-        builder.HasKey(pta => new { pta.PropertyTypeId, pta.AmenityId });
+        // تحديد المفتاح الأساسي باستخدام Id الموروث من BaseEntity
+        builder.HasKey(pta => pta.Id);
         
         // تكوين العلاقات
         builder.HasOne(pta => pta.PropertyType)

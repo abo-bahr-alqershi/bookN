@@ -49,3 +49,4 @@
 /home/ameen/Desktop/YemenBookN/Backend/YemenBooking.Infrastructure/obj/Debug/net9.0/refint/YemenBooking.Infrastructure.dll
 /home/ameen/Desktop/YemenBookN/Backend/YemenBooking.Infrastructure/obj/Debug/net9.0/YemenBooking.Infrastructure.pdb
 /home/ameen/Desktop/YemenBookN/Backend/YemenBooking.Infrastructure/obj/Debug/net9.0/ref/YemenBooking.Infrastructure.dll
+/home/ameen/Desktop/YemenBookN/Backend/YemenBooking.Infrastructure/obj/Debug/net9.0/YemenBooking.Infrastructure.sourcelink.json

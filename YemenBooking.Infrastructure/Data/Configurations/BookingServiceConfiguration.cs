@@ -23,7 +23,8 @@ public class BookingServiceConfiguration : IEntityTypeConfiguration<BookingServi
         builder.Property(bs => bs.BookingId).IsRequired();
         builder.Property(bs => bs.ServiceId).IsRequired();
         builder.Property(bs => bs.Quantity).IsRequired();
-        builder.Property(bs => bs.TotalPrice).IsRequired();
+        // حذف التهيئة المكررة للخاصية TotalPrice لتجنب تكرار تعريفها
+        // builder.Property(bs => bs.TotalPrice).IsRequired();
         
         // تكوين المفتاح الأساسي المركب
         builder.HasKey(bs => new { bs.BookingId, bs.ServiceId });

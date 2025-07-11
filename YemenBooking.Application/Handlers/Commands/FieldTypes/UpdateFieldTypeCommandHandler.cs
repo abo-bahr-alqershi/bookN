@@ -140,14 +140,14 @@ public class UpdateFieldTypeCommandHandler : IRequestHandler<UpdateFieldTypeComm
                 cancellationToken);
 
             // الخطوة 8: نشر الحدث
-            await _eventPublisher.PublishEventAsync(new FieldTypeUpdatedEvent
-            {
-                FieldTypeId = updatedFieldType.Id,
-                Name = updatedFieldType.Name,
-                DisplayName = updatedFieldType.DisplayName,
-                UpdatedBy = _currentUserService.UserId,
-                UpdatedAt = updatedFieldType.UpdatedAt
-            }, cancellationToken);
+            // await _eventPublisher.PublishEventAsync(new FieldTypeUpdatedEvent
+            // {
+            //     FieldTypeId = updatedFieldType.Id,
+            //     Name = updatedFieldType.Name,
+            //     DisplayName = updatedFieldType.DisplayName,
+            //     UpdatedBy = _currentUserService.UserId,
+            //     UpdatedAt = updatedFieldType.UpdatedAt
+            // }, cancellationToken);
 
             _logger.LogInformation("تم تحديث نوع الحقل بنجاح: {FieldTypeId}", updatedFieldType.Id);
 

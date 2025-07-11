@@ -96,7 +96,7 @@ public class CreateUnitWithFieldValuesCommandHandler : IRequestHandler<CreateUni
         await _unitOfWork.ExecuteInTransactionAsync(async () =>
         {
             // إنشاء كيان الوحدة
-            var unit = new Unit
+            var unit = new YemenBooking.Core.Entities.Unit
             {
                 PropertyId = request.PropertyId,
                 UnitTypeId = request.UnitTypeId,

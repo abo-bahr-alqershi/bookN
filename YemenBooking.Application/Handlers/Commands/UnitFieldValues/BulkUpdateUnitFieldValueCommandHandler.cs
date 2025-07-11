@@ -119,15 +119,4 @@ public class BulkUpdateUnitFieldValueCommandHandler : IRequestHandler<BulkUpdate
 
         return ResultDto<bool>.Ok(true);
     }
-}
-
-/// <summary>
-/// حدث تحديث جماعي لقيم حقول الوحدة
-/// Event for bulk update of unit field values
-/// </summary>
-public class UnitFieldValuesBulkUpdatedEvent
-{
-    public Guid UnitId { get; set; }
-    public Guid UpdatedBy { get; set; }
-    public DateTime UpdatedAt { get; set; }
 } 

@@ -122,13 +122,13 @@ namespace YemenBooking.Application.Handlers.Commands.Dashboard
                     cancellationToken);
 
                 // نشر الحدث
-                await _eventPublisher.PublishEventAsync(new ReviewRespondedEvent
-                {
-                    ReviewId = review.Id,
-                    RespondedBy = _currentUserService.UserId,
-                    RespondedAt = DateTime.UtcNow,
-                    ResponseText = request.ResponseText
-                }, cancellationToken);
+                // await _eventPublisher.PublishEventAsync(new ReviewRespondedEvent
+                // {
+                //     ReviewId = review.Id,
+                //     RespondedBy = _currentUserService.UserId,
+                //     RespondedAt = DateTime.UtcNow,
+                //     ResponseText = request.ResponseText
+                // }, cancellationToken);
 
                 // إرسال إشعار للضيف
                 var user = await _userRepository.GetUserByIdAsync(booking.UserId, cancellationToken);

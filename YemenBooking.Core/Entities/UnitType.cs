@@ -10,6 +10,18 @@ using System.Collections.Generic;
 public class UnitType : BaseEntity
 {
     /// <summary>
+    /// وصف نوع الوحدة
+    /// Description of the unit type
+    /// </summary>
+    public string Description { get; set; }
+
+    /// <summary>
+    /// قواعد التسعير الافتراضية (JSON)
+    /// Default pricing rules (JSON)
+    /// </summary>
+    public string DefaultPricingRules { get; set; }
+
+    /// <summary>
     /// معرف نوع العقار
     /// Property type identifier
     /// </summary>

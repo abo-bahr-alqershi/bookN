@@ -123,14 +123,14 @@ namespace YemenBooking.Application.Handlers.Commands.UnitTypeFields
                     cancellationToken);
 
                 // نشر الحدث
-                await _eventPublisher.PublishEventAsync(new FieldAssignedToGroupEvent
-                {
-                    FieldId = fieldId,
-                    GroupId = groupId,
-                    SortOrder = request.SortOrder,
-                    AssignedBy = _currentUserService.UserId,
-                    AssignedAt = DateTime.UtcNow
-                }, cancellationToken);
+                // await _eventPublisher.PublishEventAsync(new FieldAssignedToGroupEvent
+                // {
+                //     FieldId = fieldId,
+                //     GroupId = groupId,
+                //     SortOrder = request.SortOrder,
+                //     AssignedBy = _currentUserService.UserId,
+                //     AssignedAt = DateTime.UtcNow
+                // }, cancellationToken);
 
                 _logger.LogInformation("تم إسناد الحقل بنجاح: {FieldId} -> {GroupId}", fieldId, groupId);
             });

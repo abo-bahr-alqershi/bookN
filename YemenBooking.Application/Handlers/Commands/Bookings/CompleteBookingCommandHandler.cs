@@ -97,31 +97,31 @@ public class CompleteBookingCommandHandler : IRequestHandler<CompleteBookingComm
                 cancellationToken);
 
             // إرسال حدث إكمال الحجز
-            await _eventPublisher.PublishEventAsync(new BookingCompletedEvent
-            {
-                BookingId = booking.Id,
-                CompletedBookingId = booking.Id,
-                UserId = booking.UserId,
-                UnitId = booking.UnitId,
-                PropertyId = booking.Unit.PropertyId,
-                CompletedAt = booking.ActualCheckOutDate.Value,
-                CompletedBy = _currentUserService.UserId,
-                PlannedCheckInDate = booking.CheckIn.Date,
-                PlannedCheckOutDate = booking.CheckOut.Date,
-                ActualCheckInDate = booking.ActualCheckInDate.Value,
-                ActualCheckOutDate = booking.ActualCheckOutDate.Value,
-                FinalAmount = booking.FinalAmount,
-                CustomerRating = booking.CustomerRating,
-                CustomerFeedback = booking.CompletionNotes,
-                CompletionNotes = booking.CompletionNotes,
-                ActualNights = (booking.CheckOut.Date - booking.CheckIn.Date).Days + 1,
-                OccurredAt = DateTime.UtcNow,
-                OccurredOn = DateTime.UtcNow,
-                EventId = Guid.NewGuid(),
-                EventType = nameof(BookingCompletedEvent),
-                Version = 1,
-                CorrelationId = null
-            }, cancellationToken);
+            // await _eventPublisher.PublishEventAsync(new BookingCompletedEvent
+            // {
+            //     BookingId = booking.Id,
+            //     CompletedBookingId = booking.Id,
+            //     UserId = booking.UserId,
+            //     UnitId = booking.UnitId,
+            //     PropertyId = booking.Unit.PropertyId,
+            //     CompletedAt = booking.ActualCheckOutDate.Value,
+            //     CompletedBy = _currentUserService.UserId,
+            //     PlannedCheckInDate = booking.CheckIn.Date,
+            //     PlannedCheckOutDate = booking.CheckOut.Date,
+            //     ActualCheckInDate = booking.ActualCheckInDate.Value,
+            //     ActualCheckOutDate = booking.ActualCheckOutDate.Value,
+            //     FinalAmount = booking.FinalAmount,
+            //     CustomerRating = booking.CustomerRating,
+            //     CustomerFeedback = booking.CompletionNotes,
+            //     CompletionNotes = booking.CompletionNotes,
+            //     ActualNights = (booking.CheckOut.Date - booking.CheckIn.Date).Days + 1,
+            //     OccurredAt = DateTime.UtcNow,
+            //     OccurredOn = DateTime.UtcNow,
+            //     EventId = Guid.NewGuid(),
+            //     EventType = nameof(BookingCompletedEvent),
+            //     Version = 1,
+            //     CorrelationId = null
+            // }, cancellationToken);
 
             // إرسال إشعار للضيف
             await _notificationService.SendAsync(new NotificationRequest

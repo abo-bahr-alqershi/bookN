@@ -166,17 +166,17 @@ public class CreateUnitFieldValueCommandHandler : IRequestHandler<CreateUnitFiel
                 _currentUserService.UserId);
 
             // الخطوة 10: نشر الحدث
-            await _eventPublisher.PublishEventAsync(new UnitFieldValueCreatedEvent
-            {
-                ValueId = createdValue.Id,
-                UnitId = createdValue.UnitId,
-                PropertyId = unit.PropertyId,
-                FieldId = createdValue.UnitTypeFieldId,
-                FieldName = field.FieldName,
-                FieldValue = createdValue.FieldValue,
-                CreatedBy = _currentUserService.UserId,
-                CreatedAt = createdValue.CreatedAt
-            }, cancellationToken);
+            // await _eventPublisher.PublishEventAsync(new UnitFieldValueCreatedEvent
+            // {
+            //     ValueId = createdValue.Id,
+            //     UnitId = createdValue.UnitId,
+            //     PropertyId = unit.PropertyId,
+            //     FieldId = createdValue.UnitTypeFieldId,
+            //     FieldName = field.FieldName,
+            //     FieldValue = createdValue.FieldValue,
+            //     CreatedBy = _currentUserService.UserId,
+            //     CreatedAt = createdValue.CreatedAt
+            // }, cancellationToken);
 
             _logger.LogInformation("تم إنشاء قيمة حقل الوحدة بنجاح: {ValueId}", createdValue.Id);
 

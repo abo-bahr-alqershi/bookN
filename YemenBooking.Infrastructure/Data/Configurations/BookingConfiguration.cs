@@ -122,7 +122,8 @@ public class BookingConfiguration : IEntityTypeConfiguration<Booking>
         builder.Property(b => b.CheckIn).HasColumnType("datetime").IsRequired();
         builder.Property(b => b.CheckOut).HasColumnType("datetime").IsRequired();
         builder.Property(b => b.GuestsCount).IsRequired();
-        builder.Property(b => b.TotalPrice).IsRequired();
+        // حذف التهيئة المكررة للخاصية TotalPrice لتجنب تكرار تعريفها
+        // builder.Property(b => b.TotalPrice).IsRequired();
         builder.Property(b => b.Status).IsRequired();
         builder.Property(b => b.BookedAt).HasColumnType("datetime").IsRequired();
 

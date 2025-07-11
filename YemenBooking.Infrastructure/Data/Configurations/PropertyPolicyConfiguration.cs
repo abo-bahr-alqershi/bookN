@@ -35,7 +35,7 @@ public class PropertyPolicyConfiguration : IEntityTypeConfiguration<PropertyPoli
             .HasComment("وصف السياسة");
 
         builder.Property(pp => pp.Rules)
-            .HasColumnType("nvarchar(max)")
+            .HasColumnType("TEXT")
             .HasComment("قواعد السياسة (JSON)");
 
         // Indexes

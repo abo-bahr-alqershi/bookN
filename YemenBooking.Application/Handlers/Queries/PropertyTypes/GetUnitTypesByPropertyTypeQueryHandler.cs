@@ -11,6 +11,7 @@ using YemenBooking.Application.Queries.PropertyTypes;
 using YemenBooking.Application.Exceptions;
 using YemenBooking.Core.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
+using YemenBooking.Core.Entities;
 
 namespace YemenBooking.Application.Handlers.Queries.PropertyTypes
 {
@@ -86,10 +87,14 @@ namespace YemenBooking.Application.Handlers.Queries.PropertyTypes
                         .OrderBy(g => g.SortOrder)
                         .Select(g => new FieldGroupDto
                         {
-                            GroupId = g.Id,
+                            GroupId = g.Id.ToString(),
+                            PropertyTypeId = g.UnitTypeId.ToString(),
                             GroupName = g.GroupName,
                             DisplayName = g.DisplayName,
                             Description = g.Description,
+                            SortOrder = g.SortOrder,
+                            IsCollapsible = g.IsCollapsible,
+                            IsExpandedByDefault = g.IsExpandedByDefault,
                             Fields = g.FieldGroupFields
                                 .OrderBy(link => link.SortOrder)
                                 .Select(link =>

@@ -84,12 +84,12 @@ namespace YemenBooking.Application.Handlers.Commands.Dashboard
                     cancellationToken);
 
                 // نشر الحدث
-                await _eventPublisher.PublishEventAsync(new ReviewApprovedEvent
-                {
-                    ReviewId = review.Id,
-                    ApprovedBy = _currentUserService.UserId,
-                    ApprovedAt = DateTime.UtcNow
-                }, cancellationToken);
+                // await _eventPublisher.PublishEventAsync(new ReviewApprovedEvent
+                // {
+                //     ReviewId = review.Id,
+                //     ApprovedBy = _currentUserService.UserId,
+                //     ApprovedAt = DateTime.UtcNow
+                // }, cancellationToken);
 
                 _logger.LogInformation("تمت الموافقة على المراجعة بنجاح: {ReviewId}", review.Id);
             });

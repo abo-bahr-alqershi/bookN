@@ -23,8 +23,9 @@ public class UnitConfiguration : IEntityTypeConfiguration<Unit>
         builder.Property(u => u.PropertyId).IsRequired();
         builder.Property(u => u.UnitTypeId).IsRequired();
         builder.Property(u => u.Name).IsRequired().HasMaxLength(100);
-        builder.Property(u => u.BasePrice).IsRequired();
-        builder.Property(u => u.CustomFeatures).HasColumnType("nvarchar(max)");
+        // حذف التهيئة المكررة للخاصية BasePrice لتجنب تكرار تعريفها
+        // builder.Property(u => u.BasePrice).IsRequired();
+        builder.Property(u => u.CustomFeatures).HasColumnType("TEXT");
         builder.Property(u => u.IsAvailable).HasDefaultValue(true);
 
         // طريقة حساب السعر

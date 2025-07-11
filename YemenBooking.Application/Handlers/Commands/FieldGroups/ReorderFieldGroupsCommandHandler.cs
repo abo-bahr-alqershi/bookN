@@ -98,15 +98,15 @@ namespace YemenBooking.Application.Handlers.Commands.FieldGroups
                     cancellationToken);
 
                 // نشر الحدث
-                await _eventPublisher.PublishEventAsync(new FieldGroupsReorderedEvent
-                {
-                    PropertyTypeId = propertyTypeId,
-                    GroupOrders = request.GroupOrders
-                        .Select(o => new GroupOrderDto { GroupId = o.GroupId, SortOrder = o.SortOrder })
-                        .ToList(),
-                    ExecutedBy = _currentUserService.UserId,
-                    ExecutedAt = DateTime.UtcNow
-                }, cancellationToken);
+                // await _eventPublisher.PublishEventAsync(new FieldGroupsReorderedEvent
+                // {
+                //     PropertyTypeId = propertyTypeId,
+                //     GroupOrders = request.GroupOrders
+                //         .Select(o => new GroupOrderDto { GroupId = o.GroupId, SortOrder = o.SortOrder })
+                //         .ToList(),
+                //     ExecutedBy = _currentUserService.UserId,
+                //     ExecutedAt = DateTime.UtcNow
+                // }, cancellationToken);
 
                 _logger.LogInformation("تم إعادة ترتيب مجموعات الحقول بنجاح لنوع العقار: {PropertyTypeId}", propertyTypeId);
             });

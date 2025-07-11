@@ -83,13 +83,13 @@ namespace YemenBooking.Application.Handlers.Commands.SearchFilters
                     cancellationToken);
 
                 // نشر الحدث
-                await _eventPublisher.PublishEventAsync(new SearchFilterDeletedEvent
-                {
-                    FilterId = existing.Id,
-                    FilterType = existing.FilterType,
-                    DeletedBy = _currentUserService.UserId,
-                    DeletedAt = DateTime.UtcNow
-                }, cancellationToken);
+                // await _eventPublisher.PublishEventAsync(new SearchFilterDeletedEvent
+                // {
+                //     FilterId = existing.Id,
+                //     FilterType = existing.FilterType,
+                //     DeletedBy = _currentUserService.UserId,
+                //     DeletedAt = DateTime.UtcNow
+                // }, cancellationToken);
 
                 _logger.LogInformation("تم حذف فلتر البحث بنجاح: {FilterId}", existing.Id);
             });

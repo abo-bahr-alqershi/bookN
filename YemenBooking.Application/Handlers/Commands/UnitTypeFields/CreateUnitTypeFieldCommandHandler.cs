@@ -157,17 +157,17 @@ public class CreateUnitTypeFieldCommandHandler : IRequestHandler<CreateUnitTypeF
                 cancellationToken);
 
             // الخطوة 8: نشر الحدث
-            await _eventPublisher.PublishEventAsync(new UnitTypeFieldCreatedEvent
-            {
-                FieldId = createdField.Id,
-                UnitTypeId = createdField.UnitTypeId,
-                FieldTypeId = createdField.FieldTypeId,
-                FieldName = createdField.FieldName,
-                DisplayName = createdField.DisplayName,
-                IsRequired = createdField.IsRequired,
-                CreatedBy = _currentUserService.UserId,
-                CreatedAt = createdField.CreatedAt
-            }, cancellationToken);
+            // await _eventPublisher.PublishEventAsync(new UnitTypeFieldCreatedEvent
+            // {
+            //     FieldId = createdField.Id,
+            //     UnitTypeId = createdField.UnitTypeId,
+            //     FieldTypeId = createdField.FieldTypeId,
+            //     FieldName = createdField.FieldName,
+            //     DisplayName = createdField.DisplayName,
+            //     IsRequired = createdField.IsRequired,
+            //     CreatedBy = _currentUserService.UserId,
+            //     CreatedAt = createdField.CreatedAt
+            // }, cancellationToken);
 
             _logger.LogInformation("تم إنشاء حقل نوع الوحدة بنجاح: {FieldId}", createdField.Id);
 

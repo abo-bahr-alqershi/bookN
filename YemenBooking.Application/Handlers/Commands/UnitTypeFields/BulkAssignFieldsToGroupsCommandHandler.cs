@@ -107,17 +107,17 @@ namespace YemenBooking.Application.Handlers.Commands.UnitTypeFields
                     null,
                     cancellationToken);
 
-                await _eventPublisher.PublishEventAsync(new BulkFieldsAssignedToGroupsEvent
-                {
-                    Assignments = request.Assignments.Select(a => new FieldAssignmentResult
-                    {
-                        FieldId = Guid.Parse(a.FieldId),
-                        GroupId = Guid.Parse(a.GroupId),
-                        SortOrder = a.SortOrder
-                    }).ToList(),
-                    PerformedBy = _currentUserService.UserId,
-                    PerformedAt = DateTime.UtcNow
-                }, cancellationToken);
+                // await _eventPublisher.PublishEventAsync(new BulkFieldsAssignedToGroupsEvent
+                // {
+                //     Assignments = request.Assignments.Select(a => new FieldAssignmentResult
+                //     {
+                //         FieldId = Guid.Parse(a.FieldId),
+                //         GroupId = Guid.Parse(a.GroupId),
+                //         SortOrder = a.SortOrder
+                //     }).ToList(),
+                //     PerformedBy = _currentUserService.UserId,
+                //     PerformedAt = DateTime.UtcNow
+                // }, cancellationToken);
 
                 _logger.LogInformation("اكتمل الإسناد الجماعي للحقول للمجموعات بنجاح");
             });

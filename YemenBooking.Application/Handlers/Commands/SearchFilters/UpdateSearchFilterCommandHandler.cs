@@ -102,16 +102,16 @@ namespace YemenBooking.Application.Handlers.Commands.SearchFilters
                         cancellationToken);
 
                     // نشر الحدث
-                    await _eventPublisher.PublishEventAsync(new SearchFilterUpdatedEvent
-                    {
-                        FilterId = updatedFilter.Id,
-                        FilterType = updatedFilter.FilterType,
-                        DisplayName = updatedFilter.DisplayName,
-                        IsActive = updatedFilter.IsActive,
-                        SortOrder = updatedFilter.SortOrder,
-                        UpdatedBy = _currentUserService.UserId,
-                        UpdatedAt = updatedFilter.UpdatedAt
-                    }, cancellationToken);
+                    // await _eventPublisher.PublishEventAsync(new SearchFilterUpdatedEvent
+                    // {
+                    //     FilterId = updatedFilter.Id,
+                    //     FilterType = updatedFilter.FilterType,
+                    //     DisplayName = updatedFilter.DisplayName,
+                    //     IsActive = updatedFilter.IsActive,
+                    //     SortOrder = updatedFilter.SortOrder,
+                    //     UpdatedBy = _currentUserService.UserId,
+                    //     UpdatedAt = updatedFilter.UpdatedAt
+                    // }, cancellationToken);
 
                     _logger.LogInformation("تم تحديث فلتر البحث بنجاح: {FilterId}", updatedFilter.Id);
                 });

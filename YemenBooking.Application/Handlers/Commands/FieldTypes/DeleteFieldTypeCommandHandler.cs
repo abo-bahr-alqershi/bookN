@@ -136,14 +136,14 @@ public class DeleteFieldTypeCommandHandler : IRequestHandler<DeleteFieldTypeComm
                 cancellationToken);
 
             // الخطوة 8: نشر الحدث
-            await _eventPublisher.PublishEventAsync(new FieldTypeDeletedEvent
-            {
-                FieldTypeId = existingFieldType.Id,
-                Name = existingFieldType.Name,
-                DisplayName = existingFieldType.DisplayName,
-                DeletedBy = _currentUserService.UserId,
-                DeletedAt = existingFieldType.DeletedAt.Value
-            }, cancellationToken);
+            // await _eventPublisher.PublishEventAsync(new FieldTypeDeletedEvent
+            // {
+            //     FieldTypeId = existingFieldType.Id,
+            //     Name = existingFieldType.Name,
+            //     DisplayName = existingFieldType.DisplayName,
+            //     DeletedBy = _currentUserService.UserId,
+            //     DeletedAt = existingFieldType.DeletedAt.Value
+            // }, cancellationToken);
 
             _logger.LogInformation("تم حذف نوع الحقل بنجاح: {FieldTypeId}", existingFieldType.Id);
 

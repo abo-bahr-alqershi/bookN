@@ -119,14 +119,14 @@ public class CreateFieldTypeCommandHandler : IRequestHandler<CreateFieldTypeComm
                 cancellationToken);
 
             // الخطوة 6: نشر الحدث
-            await _eventPublisher.PublishEventAsync(new FieldTypeCreatedEvent
-            {
-                FieldTypeId = createdFieldType.Id,
-                Name = createdFieldType.Name,
-                DisplayName = createdFieldType.DisplayName,
-                CreatedBy = _currentUserService.UserId,
-                CreatedAt = createdFieldType.CreatedAt
-            }, cancellationToken);
+            // await _eventPublisher.PublishEventAsync(new FieldTypeCreatedEvent
+            // {
+            //     FieldTypeId = createdFieldType.Id,
+            //     Name = createdFieldType.Name,
+            //     DisplayName = createdFieldType.DisplayName,
+            //     CreatedBy = _currentUserService.UserId,
+            //     CreatedAt = createdFieldType.CreatedAt
+            // }, cancellationToken);
 
             _logger.LogInformation("تم إنشاء نوع الحقل بنجاح: {FieldTypeId}", createdFieldType.Id);
 

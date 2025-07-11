@@ -33,8 +33,8 @@ public class PropertyAmenityConfiguration : IEntityTypeConfiguration<PropertyAme
             .HasDefaultValue(true)
             .HasComment("هل المرفق متاح");
 
-        builder.Property(pa => pa.ExtraCost)
-            .IsRequired();
+        // حذف التهيئة المكررة للخاصية ExtraCost لتجنب تكرار تعريفها
+        // builder.Property(pa => pa.ExtraCost).IsRequired();
 
         // Money value object configuration
         builder.OwnsOne(pa => pa.ExtraCost, money =>
