@@ -514,6 +514,12 @@
             Get form fields grouped by groups for a property type
             </summary>
         </member>
+        <member name="M:YemenBooking.Api.Controllers.Admin.PropertiesController.GetPropertyAmenities(System.Guid,YemenBooking.Application.Queries.Properties.GetPropertyAmenitiesQuery)">
+            <summary>
+            استعلام للحصول على مرافق العقار
+            Query to get property amenities
+            </summary>
+        </member>
         <member name="T:YemenBooking.Api.Controllers.Admin.PropertyImagesController">
             <summary>
             متحكم بصور العقارات للمدراء
