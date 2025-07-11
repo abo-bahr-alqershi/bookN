@@ -58,5 +58,28 @@ namespace YemenBooking.Api.Controllers.Client
             var result = await _mediator.Send(query);
             return Ok(result);
         }
+
+        /// <summary>
+        /// الحصول على العقارات حسب المدينة
+        /// Get properties by city for clients
+        /// </summary>
+        [HttpGet("by-city")]
+        public async Task<IActionResult> GetPropertiesByCity([FromQuery] GetPropertiesByCityQuery query)
+        {
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// الحصول على العقارات حسب النوع
+        /// Get properties by type for clients
+        /// </summary>
+        [HttpGet("type/{propertyTypeId}")]
+        public async Task<IActionResult> GetPropertiesByType(Guid propertyTypeId, [FromQuery] GetPropertiesByTypeQuery query)
+        {
+            query.PropertyTypeId = propertyTypeId;
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
     }
 } 

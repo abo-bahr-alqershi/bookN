@@ -134,5 +134,28 @@ namespace YemenBooking.Api.Controllers.Admin
             var result = await _mediator.Send(command);
             return Ok(result);
         }
+
+        /// <summary>
+        /// إزالة حقل من مجموعة نوع الوحدة
+        /// Remove a field from a unit type group
+        /// </summary>
+        [HttpPost("{groupId}/remove-field")]
+        public async Task<IActionResult> RemoveFieldFromGroup(string groupId, [FromBody] RemoveFieldFromGroupCommand command)
+        {
+            command.GroupId = groupId;
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// إعادة ترتيب الحقول ضمن مجموعة نوع الوحدة
+        /// Reorder fields within a unit type group
+        /// </summary>
+        [HttpPost("reorder-fields")]
+        public async Task<IActionResult> ReorderFieldsInGroup([FromBody] ReorderFieldsInGroupCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
     }
 } 

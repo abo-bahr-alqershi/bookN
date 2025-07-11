@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using YemenBooking.Application.Commands.Dashboard;
 using YemenBooking.Application.Commands.Reviews;
 using YemenBooking.Application.Queries.Reviews;
+using YemenBooking.Application.Queries.Dashboard;
 
 namespace YemenBooking.Api.Controllers.Admin
 {
@@ -72,6 +73,17 @@ namespace YemenBooking.Api.Controllers.Admin
         public async Task<IActionResult> GetReviewsByUser(Guid userId, [FromQuery] GetReviewsByUserQuery query)
         {
             query.UserId = userId;
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// استعلام للحصول على المراجعات المعلقة للموافقة
+        /// Query to get pending reviews awaiting approval
+        /// </summary>
+        [HttpGet("pending")]
+        public async Task<IActionResult> GetPendingReviews([FromQuery] GetPendingReviewsQuery query)
+        {
             var result = await _mediator.Send(query);
             return Ok(result);
         }

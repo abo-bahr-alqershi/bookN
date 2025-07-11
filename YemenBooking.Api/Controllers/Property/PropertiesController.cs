@@ -97,5 +97,52 @@ namespace YemenBooking.Api.Controllers.Property
             var result = await _mediator.Send(query);
             return Ok(result);
         }
+
+        /// <summary>
+        /// الحصول على العقارات حسب المدينة
+        /// Get properties by city
+        /// </summary>
+        [HttpGet("by-city")]
+        public async Task<IActionResult> GetPropertiesByCity([FromQuery] GetPropertiesByCityQuery query)
+        {
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// الحصول على عقارات المالك
+        /// Get properties by owner
+        /// </summary>
+        [HttpGet("owner/{ownerId}")]
+        public async Task<IActionResult> GetPropertiesByOwner(Guid ownerId, [FromQuery] GetPropertiesByOwnerQuery query)
+        {
+            query.OwnerId = ownerId;
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// الحصول على العقارات حسب النوع
+        /// Get properties by type
+        /// </summary>
+        [HttpGet("type/{propertyTypeId}")]
+        public async Task<IActionResult> GetPropertiesByType(Guid propertyTypeId, [FromQuery] GetPropertiesByTypeQuery query)
+        {
+            query.PropertyTypeId = propertyTypeId;
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// الحصول على إحصائيات تقييم العقار
+        /// Get property rating statistics
+        /// </summary>
+        [HttpGet("{propertyId}/rating-stats")]
+        public async Task<IActionResult> GetPropertyRatingStats(Guid propertyId, [FromQuery] GetPropertyRatingStatsQuery query)
+        {
+            query.PropertyId = propertyId;
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
     }
 } 

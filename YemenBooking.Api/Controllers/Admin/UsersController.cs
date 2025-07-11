@@ -157,5 +157,17 @@ namespace YemenBooking.Api.Controllers.Admin
             var result = await _mediator.Send(query);
             return Ok(result);
         }
+
+        /// <summary>
+        /// استعلام أدوار المستخدم
+        /// Get user roles for a specific user
+        /// </summary>
+        [HttpGet("{id}/roles")]
+        public async Task<IActionResult> GetUserRoles(Guid id, [FromQuery] GetUserRolesQuery query)
+        {
+            query.UserId = id;
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
     }
 } 

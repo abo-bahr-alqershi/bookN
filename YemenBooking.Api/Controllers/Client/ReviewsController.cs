@@ -49,5 +49,17 @@ namespace YemenBooking.Api.Controllers.Client
             var result = await _mediator.Send(query);
             return Ok(result);
         }
+
+        /// <summary>
+        /// تحديث التقييم
+        /// Update a review
+        /// </summary>
+        [HttpPut("{reviewId}")]
+        public async Task<IActionResult> UpdateReview(Guid reviewId, [FromBody] UpdateReviewCommand command)
+        {
+            command.ReviewId = reviewId;
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
     }
 } 

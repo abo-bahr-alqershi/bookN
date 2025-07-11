@@ -5,6 +5,7 @@ using YemenBooking.Application.Commands.Dashboard;
 using YemenBooking.Application.Queries.Analytics;
 using YemenBooking.Application.Queries.Dashboard;
 using YemenBooking.Application.Queries.ReportsAnalytics;
+using System;
 
 namespace YemenBooking.Api.Controllers.Admin
 {
@@ -144,6 +145,29 @@ namespace YemenBooking.Api.Controllers.Admin
         [HttpPost("dashboard/user-acquisition-funnel")]
         public async Task<IActionResult> GetUserAcquisitionFunnel([FromBody] GetUserAcquisitionFunnelQuery query)
         {
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// استعلام للحصول على تحليل أفواج العملاء ضمن نطاق زمني
+        /// Query to get customer cohort analysis within a date range
+        /// </summary>
+        [HttpPost("dashboard/customer-cohort-analysis")]
+        public async Task<IActionResult> GetCustomerCohortAnalysis([FromBody] GetCustomerCohortAnalysisQuery query)
+        {
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// استعلام للحصول على تحليل مشاعر التقييمات لعقار محدد
+        /// Query to get review sentiment analysis for a specific property
+        /// </summary>
+        [HttpGet("dashboard/review-sentiment-analysis/{propertyId}")]
+        public async Task<IActionResult> GetReviewSentimentAnalysis(Guid propertyId)
+        {
+            var query = new GetReviewSentimentAnalysisQuery(propertyId);
             var result = await _mediator.Send(query);
             return Ok(result);
         }
