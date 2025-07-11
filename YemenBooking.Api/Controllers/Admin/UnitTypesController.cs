@@ -14,9 +14,6 @@ namespace YemenBooking.Api.Controllers.Admin
     /// متحكم بأنواع الوحدات للمدراء
     /// Controller for unit type management by admins
     /// </summary>
-    [ApiController]
-    [Route("api/admin/[controller]")]
-    [Authorize(Roles = "Admin")]
     public class UnitTypesController : BaseAdminController
     {
         public UnitTypesController(IMediator mediator) : base(mediator) { }

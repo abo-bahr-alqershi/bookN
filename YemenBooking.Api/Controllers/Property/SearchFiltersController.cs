@@ -12,9 +12,6 @@ namespace YemenBooking.Api.Controllers.Property
     /// متحكم بعرض فلاتر البحث لأصحاب العقارات
     /// Controller for property owners to view search filters
     /// </summary>
-    [ApiController]
-    [Route("api/property/search-filters")]
-    [Authorize(Roles = "PropertyOwner")]
     public class SearchFiltersController : BasePropertyController
     {
         public SearchFiltersController(IMediator mediator) : base(mediator) { }

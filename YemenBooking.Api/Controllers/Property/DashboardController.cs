@@ -14,9 +14,6 @@ namespace YemenBooking.Api.Controllers.Property
     /// متحكم ببيانات لوحة تحكم المالك
     /// Controller for property owner dashboard operations
     /// </summary>
-    [ApiController]
-    [Route("api/property/[controller]")]
-    [Authorize(Roles = "PropertyOwner")]
     public class DashboardController : BasePropertyController
     {
         public DashboardController(IMediator mediator) : base(mediator) { }

@@ -12,9 +12,6 @@ namespace YemenBooking.Api.Controllers.Property
     /// متحكم بعمليات الدفع لأصحاب العقارات
     /// Controller for payment operations by property owners
     /// </summary>
-    [ApiController]
-    [Route("api/property/payments")]
-    [Authorize(Roles = "PropertyOwner")]
     public class PaymentsController : BasePropertyController
     {
         public PaymentsController(IMediator mediator) : base(mediator) { }

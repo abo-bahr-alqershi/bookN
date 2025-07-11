@@ -11,9 +11,6 @@ using YemenBooking.Application.Queries.Users;
 
 namespace YemenBooking.Api.Controllers.Property
 {
-    [ApiController]
-    [Route("api/property/[controller]")]
-    [Authorize(Roles = "PropertyOwner")]
     public class UsersController : BasePropertyController
     {
         public UsersController(IMediator mediator) : base(mediator) { }

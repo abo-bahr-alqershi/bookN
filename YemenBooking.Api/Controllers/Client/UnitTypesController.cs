@@ -12,9 +12,6 @@ namespace YemenBooking.Api.Controllers.Client
     /// متحكم بعرض أنواع الوحدات للعميل
     /// Controller for client to get unit types
     /// </summary>
-    [ApiController]
-    [Route("api/client/[controller]")]
-    [Authorize(Roles = "Client")]
     public class UnitTypesController : BaseClientController
     {
         public UnitTypesController(IMediator mediator) : base(mediator) { }

@@ -8,9 +8,6 @@ using YemenBooking.Application.Queries.Roles;
 
 namespace YemenBooking.Api.Controllers.Admin
 {
-    [ApiController]
-    [Route("api/admin/[controller]")]
-    [Authorize(Roles = "Admin")]
     public class RolesController : BaseAdminController
     {
         public RolesController(IMediator mediator) : base(mediator) { }

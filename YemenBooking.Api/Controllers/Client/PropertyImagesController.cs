@@ -10,9 +10,6 @@ namespace YemenBooking.Api.Controllers.Client
     /// متحكم بعرض صور العقارات للعملاء
     /// Controller for clients to view property images
     /// </summary>
-    [ApiController]
-    [Route("api/client/property-images")]
-    [Authorize(Roles = "Client")]
     public class PropertyImagesController : BaseClientController
     {
         public PropertyImagesController(IMediator mediator) : base(mediator) { }

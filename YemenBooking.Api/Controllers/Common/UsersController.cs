@@ -11,9 +11,6 @@ namespace YemenBooking.Api.Controllers.Common
     /// متحكم ببيانات وإعدادات المستخدم العامة
     /// Controller for common user operations: current user, profile picture, and settings
     /// </summary>
-    [ApiController]
-    [Route("api/common/users")]
-    [Authorize]
     public class UsersController : BaseCommonController
     {
         public UsersController(IMediator mediator) : base(mediator) { }

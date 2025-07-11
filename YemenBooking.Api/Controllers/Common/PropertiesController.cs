@@ -9,8 +9,6 @@ namespace YemenBooking.Api.Controllers.Common
     /// متحكم بعملية البحث عن العقارات
     /// Controller for common property search operations
     /// </summary>
-    [ApiController]
-    [Route("api/common/[controller]")]
     public class PropertiesController : BaseCommonController
     {
         public PropertiesController(IMediator mediator) : base(mediator) { }

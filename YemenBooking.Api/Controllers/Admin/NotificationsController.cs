@@ -12,9 +12,6 @@ namespace YemenBooking.Api.Controllers.Admin
     /// متحكم بإشعارات النظام للمدراء
     /// Controller for system notifications by admins
     /// </summary>
-    [ApiController]
-    [Route("api/admin/notifications")]
-    [Authorize(Roles = "Admin")]
     public class NotificationsController : BaseAdminController
     {
         public NotificationsController(IMediator mediator) : base(mediator) { }

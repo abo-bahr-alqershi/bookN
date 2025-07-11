@@ -14,9 +14,6 @@ namespace YemenBooking.Api.Controllers.Property
     /// متحكم بأنواع الوحدات لأصحاب العقارات
     /// Controller for unit type management by property owners
     /// </summary>
-    [ApiController]
-    [Route("api/property/[controller]")]
-    [Authorize(Roles = "PropertyOwner")]
     public class UnitTypesController : BasePropertyController
     {
         public UnitTypesController(IMediator mediator) : base(mediator) { }

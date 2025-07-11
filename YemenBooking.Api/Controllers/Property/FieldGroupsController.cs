@@ -11,9 +11,6 @@ namespace YemenBooking.Api.Controllers.Property
     /// متحكم بعرض مجموعات حقول العقار لأصحاب العقارات
     /// Controller for property owners to view field groups
     /// </summary>
-    [ApiController]
-    [Route("api/property/field-groups")]
-    [Authorize(Roles = "PropertyOwner")]
     public class FieldGroupsController : BasePropertyController
     {
         public FieldGroupsController(IMediator mediator) : base(mediator) { }

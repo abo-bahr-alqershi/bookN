@@ -12,9 +12,6 @@ namespace YemenBooking.Api.Controllers.Common
     /// متحكم بإشعارات النظام المشتركة
     /// Controller for common system notifications operations
     /// </summary>
-    [ApiController]
-    [Route("api/common/notifications")]
-    [Authorize]
     public class NotificationsController : BaseCommonController
     {
         public NotificationsController(IMediator mediator) : base(mediator) { }

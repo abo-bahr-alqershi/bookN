@@ -10,9 +10,6 @@ namespace YemenBooking.Api.Controllers.Admin
     /// متحكم برفع الصور للمدراء
     /// Controller for uploading images by admins
     /// </summary>
-    [ApiController]
-    [Route("api/admin/upload-image")]
-    [Authorize(Roles = "Admin")]
     public class UploadImageController : BaseAdminController
     {
         public UploadImageController(IMediator mediator) : base(mediator) { }

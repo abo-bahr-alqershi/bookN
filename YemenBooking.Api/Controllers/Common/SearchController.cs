@@ -10,8 +10,6 @@ namespace YemenBooking.Api.Controllers.Common
     /// متحكم بنقاط نهاية البحث المشتركة
     /// Controller for shared search endpoints
     /// </summary>
-    [ApiController]
-    [Route("api/common/[controller]")]
     public class SearchController : BaseCommonController
     {
         public SearchController(IMediator mediator) : base(mediator) { }

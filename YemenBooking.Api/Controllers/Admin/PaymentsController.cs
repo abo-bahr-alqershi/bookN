@@ -12,9 +12,6 @@ namespace YemenBooking.Api.Controllers.Admin
     /// متحكم بمدفوعات النظام للمدراء
     /// Controller for payment operations by admins
     /// </summary>
-    [ApiController]
-    [Route("api/admin/payments")]
-    [Authorize(Roles = "Admin")]
     public class PaymentsController : BaseAdminController
     {
         public PaymentsController(IMediator mediator) : base(mediator) { }

@@ -10,9 +10,6 @@ namespace YemenBooking.Api.Controllers.Property
     /// متحكم بسجلات نشاط العملاء ومالكي العقارات
     /// Controller for customer and property activity logs
     /// </summary>
-    [ApiController]
-    [Route("api/property/[controller]")]
-    [Authorize(Roles = "PropertyOwner")]
     public class AuditLogsController : BasePropertyController
     {
         public AuditLogsController(IMediator mediator) : base(mediator) { }

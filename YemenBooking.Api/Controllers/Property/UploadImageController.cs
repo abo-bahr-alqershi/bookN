@@ -10,9 +10,6 @@ namespace YemenBooking.Api.Controllers.Property
     /// متحكم برفع الصور للمالكين
     /// Controller for uploading images by property owners
     /// </summary>
-    [ApiController]
-    [Route("api/property/upload-image")]
-    [Authorize(Roles = "PropertyOwner")]
     public class UploadImageController : BasePropertyController
     {
         public UploadImageController(IMediator mediator) : base(mediator) { }

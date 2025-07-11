@@ -11,9 +11,6 @@ namespace YemenBooking.Api.Controllers.Property
     /// متحكم بعرض أنواع العقارات لأصحاب العقارات
     /// Controller for property owners to get property types
     /// </summary>
-    [ApiController]
-    [Route("api/property/[controller]")]
-    [Authorize(Roles = "PropertyOwner")]
     public class PropertyTypesController : BasePropertyController
     {
         public PropertyTypesController(IMediator mediator) : base(mediator) { }

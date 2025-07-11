@@ -11,9 +11,6 @@ namespace YemenBooking.Api.Controllers.Client
     /// متحكم بعرض خدمات العقار للعميل
     /// Controller for client to get property services
     /// </summary>
-    [ApiController]
-    [Route("api/client/property-services")]
-    [Authorize(Roles = "Client")]
     public class PropertyServicesController : BaseClientController
     {
         public PropertyServicesController(IMediator mediator) : base(mediator) { }

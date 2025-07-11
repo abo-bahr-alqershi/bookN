@@ -11,9 +11,6 @@ namespace YemenBooking.Api.Controllers.Client
     /// متحكم بإشعارات النظام للعملاء
     /// Controller for system notifications by clients
     /// </summary>
-    [ApiController]
-    [Route("api/client/notifications")]
-    [Authorize(Roles = "Client")]
     public class NotificationsController : BaseClientController
     {
         public NotificationsController(IMediator mediator) : base(mediator) { }

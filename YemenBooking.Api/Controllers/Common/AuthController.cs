@@ -10,8 +10,6 @@ namespace YemenBooking.Api.Controllers.Common
     /// متحكم بعمليات المصادقة: تسجيل الدخول، تحديث التوكن، وإدارة استعادة الحساب
     /// Controller for authentication operations: login, refresh token, password resets, and email verification
     /// </summary>
-    [ApiController]
-    [Route("api/common/[controller]")]
     public class AuthController : BaseCommonController
     {
         public AuthController(IMediator mediator) : base(mediator) { }

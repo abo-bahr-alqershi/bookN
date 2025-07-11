@@ -12,9 +12,6 @@ namespace YemenBooking.Api.Controllers.Client
     /// متحكم بعرض فلاتر البحث للعملاء
     /// Controller for clients to view search filters
     /// </summary>
-    [ApiController]
-    [Route("api/client/search-filters")]
-    [Authorize(Roles = "Client")]
     public class SearchFiltersController : BaseClientController
     {
         public SearchFiltersController(IMediator mediator) : base(mediator) { }

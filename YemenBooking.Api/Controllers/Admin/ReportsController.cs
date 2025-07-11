@@ -12,9 +12,6 @@ namespace YemenBooking.Api.Controllers.Admin
     /// متحكم بالتقارير للمدراء
     /// Controller for report management by admins
     /// </summary>
-    [ApiController]
-    [Route("api/admin/[controller]")]
-    [Authorize(Roles = "Admin")]
     public class ReportsController : BaseAdminController
     {
         public ReportsController(IMediator mediator) : base(mediator) { }

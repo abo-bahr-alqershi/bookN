@@ -12,9 +12,6 @@ namespace YemenBooking.Api.Controllers.Property
     /// متحكم بإشعارات النظام لأصحاب العقارات
     /// Controller for system notifications by property owners
     /// </summary>
-    [ApiController]
-    [Route("api/property/notifications")]
-    [Authorize(Roles = "PropertyOwner")]
     public class NotificationsController : BasePropertyController
     {
         public NotificationsController(IMediator mediator) : base(mediator) { }
