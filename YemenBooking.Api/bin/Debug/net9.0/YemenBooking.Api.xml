@@ -1702,6 +1702,24 @@
             Search properties with filters, location, and distance
             </summary>
         </member>
+        <member name="T:YemenBooking.Api.Controllers.Common.SearchController">
+            <summary>
+            متحكم بنقاط نهاية البحث المشتركة
+            Controller for shared search endpoints
+            </summary>
+        </member>
+        <member name="M:YemenBooking.Api.Controllers.Common.SearchController.SearchProperties(YemenBooking.Application.Commands.PropertySearch.SearchPropertiesCommand)">
+            <summary>
+            البحث في العقارات بناءً على المعايير الديناميكية والفرز والتصفح
+            Search properties with dynamic filters, sorting, and pagination
+            </summary>
+        </member>
+        <member name="M:YemenBooking.Api.Controllers.Common.SearchController.SearchUnits(YemenBooking.Application.Queries.Units.SearchUnitsQuery)">
+            <summary>
+            البحث في الوحدات بناءً على المعايير الديناميكية والفرز والتصفح
+            Search units with dynamic filters, sorting, and pagination
+            </summary>
+        </member>
         <member name="T:YemenBooking.Api.Controllers.Common.UsersController">
             <summary>
             متحكم ببيانات وإعدادات المستخدم العامة
