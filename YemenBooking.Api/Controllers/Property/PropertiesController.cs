@@ -144,5 +144,17 @@ namespace YemenBooking.Api.Controllers.Property
             var result = await _mediator.Send(query);
             return Ok(result);
         }
+
+        /// <summary>
+        /// استعلام للحصول على مرافق العقار
+        /// Query to get property amenities
+        /// </summary>
+        [HttpGet("{propertyId}/amenities")]
+        public async Task<IActionResult> GetPropertyAmenities(Guid propertyId, [FromQuery] GetPropertyAmenitiesQuery query)
+        {
+            query.PropertyId = propertyId;
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
     }
 } 
