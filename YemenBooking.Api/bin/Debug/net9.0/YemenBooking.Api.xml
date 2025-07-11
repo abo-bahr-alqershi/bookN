@@ -250,6 +250,18 @@
             Get user acquisition funnel
             </summary>
         </member>
+        <member name="M:YemenBooking.Api.Controllers.Admin.DashboardController.GetCustomerCohortAnalysis(YemenBooking.Application.Queries.Analytics.GetCustomerCohortAnalysisQuery)">
+            <summary>
+            استعلام للحصول على تحليل أفواج العملاء ضمن نطاق زمني
+            Query to get customer cohort analysis within a date range
+            </summary>
+        </member>
+        <member name="M:YemenBooking.Api.Controllers.Admin.DashboardController.GetReviewSentimentAnalysis(System.Guid)">
+            <summary>
+            استعلام للحصول على تحليل مشاعر التقييمات لعقار محدد
+            Query to get review sentiment analysis for a specific property
+            </summary>
+        </member>
         <member name="M:YemenBooking.Api.Controllers.Admin.DashboardController.GetTopPerformingProperties(System.Int32)">
             <summary>
             استعلام أفضل العقارات أداءً
@@ -754,6 +766,12 @@
             Get reviews by user
             </summary>
         </member>
+        <member name="M:YemenBooking.Api.Controllers.Admin.ReviewsController.GetPendingReviews(YemenBooking.Application.Queries.Dashboard.GetPendingReviewsQuery)">
+            <summary>
+            استعلام للحصول على المراجعات المعلقة للموافقة
+            Query to get pending reviews awaiting approval
+            </summary>
+        </member>
         <member name="M:YemenBooking.Api.Controllers.Admin.RolesController.CreateRole(YemenBooking.Application.Commands.Roles.CreateRoleCommand)">
             <summary>
             إنشاء دور جديد
@@ -1054,6 +1072,18 @@
             Bulk assign fields to various unit type groups
             </summary>
         </member>
+        <member name="M:YemenBooking.Api.Controllers.Admin.UnitTypeFieldsController.RemoveFieldFromGroup(System.String,YemenBooking.Application.Commands.UnitTypeFields.RemoveFieldFromGroupCommand)">
+            <summary>
+            إزالة حقل من مجموعة نوع الوحدة
+            Remove a field from a unit type group
+            </summary>
+        </member>
+        <member name="M:YemenBooking.Api.Controllers.Admin.UnitTypeFieldsController.ReorderFieldsInGroup(YemenBooking.Application.Commands.UnitTypeFields.ReorderFieldsInGroupCommand)">
+            <summary>
+            إعادة ترتيب الحقول ضمن مجموعة نوع الوحدة
+            Reorder fields within a unit type group
+            </summary>
+        </member>
         <member name="T:YemenBooking.Api.Controllers.Admin.UnitTypesController">
             <summary>
             متحكم بأنواع الوحدات للمدراء
@@ -1178,6 +1208,12 @@
             <summary>
             استعلام إشعارات المستخدم
             Get user notifications
+            </summary>
+        </member>
+        <member name="M:YemenBooking.Api.Controllers.Admin.UsersController.GetUserRoles(System.Guid,YemenBooking.Application.Queries.Users.GetUserRolesQuery)">
+            <summary>
+            استعلام أدوار المستخدم
+            Get user roles for a specific user
             </summary>
         </member>
         <member name="T:YemenBooking.Api.Controllers.Client.AmenitiesController">
@@ -1354,6 +1390,18 @@
             Get properties near a specific location
             </summary>
         </member>
+        <member name="M:YemenBooking.Api.Controllers.Client.PropertiesController.GetPropertiesByCity(YemenBooking.Application.Queries.Properties.GetPropertiesByCityQuery)">
+            <summary>
+            الحصول على العقارات حسب المدينة
+            Get properties by city for clients
+            </summary>
+        </member>
+        <member name="M:YemenBooking.Api.Controllers.Client.PropertiesController.GetPropertiesByType(System.Guid,YemenBooking.Application.Queries.Properties.GetPropertiesByTypeQuery)">
+            <summary>
+            الحصول على العقارات حسب النوع
+            Get properties by type for clients
+            </summary>
+        </member>
         <member name="T:YemenBooking.Api.Controllers.Client.PropertyImagesController">
             <summary>
             متحكم بعرض صور العقارات للعملاء
@@ -1460,6 +1508,12 @@
             <summary>
             الحصول على تقييمات المستخدم
             Get reviews by user
+            </summary>
+        </member>
+        <member name="M:YemenBooking.Api.Controllers.Client.ReviewsController.UpdateReview(System.Guid,YemenBooking.Application.Commands.Reviews.UpdateReviewCommand)">
+            <summary>
+            تحديث التقييم
+            Update a review
             </summary>
         </member>
         <member name="T:YemenBooking.Api.Controllers.Client.SearchFiltersController">
@@ -2150,6 +2204,36 @@
             <summary>
             جلب حقول النموذج لنوع العقار
             Get form fields grouped by groups for a property type
+            </summary>
+        </member>
+        <member name="M:YemenBooking.Api.Controllers.Property.PropertiesController.GetPropertiesByCity(YemenBooking.Application.Queries.Properties.GetPropertiesByCityQuery)">
+            <summary>
+            الحصول على العقارات حسب المدينة
+            Get properties by city
+            </summary>
+        </member>
+        <member name="M:YemenBooking.Api.Controllers.Property.PropertiesController.GetPropertiesByOwner(System.Guid,YemenBooking.Application.Queries.Properties.GetPropertiesByOwnerQuery)">
+            <summary>
+            الحصول على عقارات المالك
+            Get properties by owner
+            </summary>
+        </member>
+        <member name="M:YemenBooking.Api.Controllers.Property.PropertiesController.GetPropertiesByType(System.Guid,YemenBooking.Application.Queries.Properties.GetPropertiesByTypeQuery)">
+            <summary>
+            الحصول على العقارات حسب النوع
+            Get properties by type
+            </summary>
+        </member>
+        <member name="M:YemenBooking.Api.Controllers.Property.PropertiesController.GetPropertyRatingStats(System.Guid,YemenBooking.Application.Queries.Reviews.GetPropertyRatingStatsQuery)">
+            <summary>
+            الحصول على إحصائيات تقييم العقار
+            Get property rating statistics
+            </summary>
+        </member>
+        <member name="M:YemenBooking.Api.Controllers.Property.PropertiesController.GetPropertyAmenities(System.Guid,YemenBooking.Application.Queries.Properties.GetPropertyAmenitiesQuery)">
+            <summary>
+            استعلام للحصول على مرافق العقار
+            Query to get property amenities
             </summary>
         </member>
         <member name="T:YemenBooking.Api.Controllers.Property.PropertyImagesController">
