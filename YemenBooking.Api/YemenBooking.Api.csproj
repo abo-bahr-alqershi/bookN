@@ -4,6 +4,10 @@
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <!-- توليد ملف توثيق XML لتعليقات Swagger -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <!-- تجاهل تحذيرات عدم وجود تعليقات XML -->
+    <NoWarn>1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

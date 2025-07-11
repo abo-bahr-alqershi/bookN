@@ -26,11 +26,17 @@ namespace YemenBooking.Api.Extensions
             // التفويض
             app.UseAuthorization();
 
-            // تفعيل OpenAPI (Swagger) في بيئة التطوير
+            // تفعيل Swagger UI في بيئة التطوير
             if (app.Environment.IsDevelopment())
             {
-                // يحدد نقطة النهاية لمواصفات OpenAPI ورسم واجهة Swagger UI
-                app.MapOpenApi();
+                // توليد مستند Swagger JSON
+                app.UseSwagger();
+                // تشغيل واجهة Swagger UI
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "YemenBooking API V1");
+                    c.RoutePrefix = string.Empty; // الواجهة عند الجذر
+                });
             }
 
             // ربط المتحكمات بنظام التوجيه
