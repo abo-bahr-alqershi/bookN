@@ -111,5 +111,28 @@ namespace YemenBooking.Api.Controllers.Admin
             var result = await _mediator.Send(query);
             return Ok(result);
         }
+
+        /// <summary>
+        /// تعيين عدة حقول إلى مجموعة نوع الوحدة
+        /// Assign multiple fields to a unit type group
+        /// </summary>
+        [HttpPost("{groupId}/assign-fields")]
+        public async Task<IActionResult> AssignFieldsToGroup(string groupId, [FromBody] AssignFieldsToGroupCommand command)
+        {
+            command.GroupId = groupId;
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// الإسناد الجماعي للحقول إلى المجموعات
+        /// Bulk assign fields to various unit type groups
+        /// </summary>
+        [HttpPost("bulk-assign-fields")]
+        public async Task<IActionResult> BulkAssignFieldsToGroups([FromBody] BulkAssignFieldsToGroupsCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
     }
 } 

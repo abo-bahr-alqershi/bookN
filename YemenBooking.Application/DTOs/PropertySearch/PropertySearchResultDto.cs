@@ -45,11 +45,6 @@ namespace YemenBooking.Application.DTOs.PropertySearch
         public bool HasNextPage { get; set; }
 
         /// <summary>
-        /// الفلاتر المطبقة
-        /// </summary>
-        public List<SearchFilterCriteriaDto> AppliedFilters { get; set; } = new List<SearchFilterCriteriaDto>();
-
-        /// <summary>
         /// إحصائيات البحث
         /// </summary>
         public SearchStatisticsDto? Statistics { get; set; }

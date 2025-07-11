@@ -63,6 +63,39 @@ namespace YemenBooking.Api.Controllers.Property
         }
 
         /// <summary>
+        /// إنشاء جماعي لقيم حقول الوحدات
+        /// Bulk create unit field values
+        /// </summary>
+        [HttpPost("bulk-create")]
+        public async Task<IActionResult> BulkCreateUnitFieldValues([FromBody] BulkCreateUnitFieldValueCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// حذف جماعي لقيم حقول الوحدات
+        /// Bulk delete unit field values
+        /// </summary>
+        [HttpPost("bulk-delete")]
+        public async Task<IActionResult> BulkDeleteUnitFieldValues([FromBody] BulkDeleteUnitFieldValueCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// تحديث جماعي لقيم حقول الوحدات
+        /// Bulk update unit field values
+        /// </summary>
+        [HttpPost("bulk-update-value")]
+        public async Task<IActionResult> BulkUpdateUnitFieldValue([FromBody] BulkUpdateUnitFieldValueCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        /// <summary>
         /// جلب قيم حقول الوحدات
         /// Get all unit field values
         /// </summary>

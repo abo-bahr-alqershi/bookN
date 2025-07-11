@@ -1042,6 +1042,18 @@
             Get grouped property type fields
             </summary>
         </member>
+        <member name="M:YemenBooking.Api.Controllers.Admin.UnitTypeFieldsController.AssignFieldsToGroup(System.String,YemenBooking.Application.Commands.UnitTypeFields.AssignFieldsToGroupCommand)">
+            <summary>
+            تعيين عدة حقول إلى مجموعة نوع الوحدة
+            Assign multiple fields to a unit type group
+            </summary>
+        </member>
+        <member name="M:YemenBooking.Api.Controllers.Admin.UnitTypeFieldsController.BulkAssignFieldsToGroups(YemenBooking.Application.Commands.UnitTypeFields.BulkAssignFieldsToGroupsCommand)">
+            <summary>
+            الإسناد الجماعي للحقول إلى المجموعات
+            Bulk assign fields to various unit type groups
+            </summary>
+        </member>
         <member name="T:YemenBooking.Api.Controllers.Admin.UnitTypesController">
             <summary>
             متحكم بأنواع الوحدات للمدراء
@@ -2458,6 +2470,24 @@
             Bulk update unit field values
             </summary>
         </member>
+        <member name="M:YemenBooking.Api.Controllers.Property.UnitFieldValuesController.BulkCreateUnitFieldValues(YemenBooking.Application.Commands.UnitFieldValues.BulkCreateUnitFieldValueCommand)">
+            <summary>
+            إنشاء جماعي لقيم حقول الوحدات
+            Bulk create unit field values
+            </summary>
+        </member>
+        <member name="M:YemenBooking.Api.Controllers.Property.UnitFieldValuesController.BulkDeleteUnitFieldValues(YemenBooking.Application.Commands.UnitFieldValues.BulkDeleteUnitFieldValueCommand)">
+            <summary>
+            حذف جماعي لقيم حقول الوحدات
+            Bulk delete unit field values
+            </summary>
+        </member>
+        <member name="M:YemenBooking.Api.Controllers.Property.UnitFieldValuesController.BulkUpdateUnitFieldValue(YemenBooking.Application.Commands.UnitFieldValues.BulkUpdateUnitFieldValueCommand)">
+            <summary>
+            تحديث جماعي لقيم حقول الوحدات
+            Bulk update unit field values
+            </summary>
+        </member>
         <member name="M:YemenBooking.Api.Controllers.Property.UnitFieldValuesController.GetUnitFieldValues(YemenBooking.Application.Queries.UnitFieldValues.GetUnitFieldValuesQuery)">
             <summary>
             جلب قيم حقول الوحدات
@@ -2498,6 +2528,12 @@
             <summary>
             إنشاء وحدة جديدة
             Create a new unit
+            </summary>
+        </member>
+        <member name="M:YemenBooking.Api.Controllers.Property.UnitsController.CreateUnitWithFieldValues(YemenBooking.Application.Commands.Units.CreateUnitWithFieldValuesCommand)">
+            <summary>
+            إنشاء وحدة جديدة مع قيم الحقول الديناميكية
+            Create a new unit along with dynamic field values
             </summary>
         </member>
         <member name="M:YemenBooking.Api.Controllers.Property.UnitsController.UpdateUnit(System.Guid,YemenBooking.Application.Commands.Units.UpdateUnitCommand)">

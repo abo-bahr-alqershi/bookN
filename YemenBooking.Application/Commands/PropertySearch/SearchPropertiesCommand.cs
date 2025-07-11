@@ -43,12 +43,6 @@ public class SearchPropertiesCommand : IRequest<ResultDto<PropertySearchResultDt
     public Guid? PropertyTypeId { get; set; }
 
     /// <summary>
-    /// فلاتر البحث الديناميكية
-    /// Dynamic search filters
-    /// </summary>
-    public List<SearchFilterCriteriaDto> Filters { get; set; } = new List<SearchFilterCriteriaDto>();
-
-    /// <summary>
     /// رقم الصفحة
     /// Page number
     /// </summary>

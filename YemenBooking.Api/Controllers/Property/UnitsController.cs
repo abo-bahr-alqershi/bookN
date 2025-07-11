@@ -53,6 +53,17 @@ namespace YemenBooking.Api.Controllers.Property
         }
 
         /// <summary>
+        /// إنشاء وحدة جديدة مع قيم الحقول الديناميكية
+        /// Create a new unit along with dynamic field values
+        /// </summary>
+        [HttpPost("with-field-values")]
+        public async Task<IActionResult> CreateUnitWithFieldValues([FromBody] CreateUnitWithFieldValuesCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        /// <summary>
         /// تحديث بيانات وحدة
         /// Update an existing unit
         /// </summary>

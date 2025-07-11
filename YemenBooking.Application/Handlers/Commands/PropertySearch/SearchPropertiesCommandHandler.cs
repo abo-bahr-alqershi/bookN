@@ -135,7 +135,6 @@ public class SearchPropertiesCommandHandler : IRequestHandler<SearchPropertiesCo
                 TotalPages = (int)Math.Ceiling((double)totalCount / request.PageSize),
                 HasPreviousPage = request.PageNumber > 1,
                 HasNextPage = request.PageNumber < Math.Ceiling((double)totalCount / request.PageSize),
-                AppliedFilters = request.Filters ?? new List<SearchFilterCriteriaDto>(),
                 Statistics = statistics
             };
 
@@ -468,7 +467,6 @@ public class SearchPropertiesCommandHandler : IRequestHandler<SearchPropertiesCo
         return new SearchStatisticsDto
         {
             SearchDurationMs = searchDurationMs,
-            AppliedFiltersCount = request.Filters?.Count ?? 0,
             TotalResultsBeforePaging = propertiesList.Count,
             PriceRange = propertiesList.Any() ? new PriceRangeDto
             {
