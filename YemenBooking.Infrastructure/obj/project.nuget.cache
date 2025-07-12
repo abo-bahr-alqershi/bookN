@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rMmTmHpn26w=",
+  "dgSpecHash": "wqkUTtTqfqo=",
   "success": true,
-  "projectFilePath": "/home/ameen/Desktop/YemenBookN/Backend/YemenBooking.Infrastructure/YemenBooking.Infrastructure.csproj",
+  "projectFilePath": "/home/ameen/Desktop/BookN/backend/YemenBooking.Infrastructure/YemenBooking.Infrastructure.csproj",
   "expectedPackageFiles": [
     "/home/ameen/.nuget/packages/automapper/15.0.0/automapper.15.0.0.nupkg.sha512",
     "/home/ameen/.nuget/packages/azure.core/1.38.0/azure.core.1.38.0.nupkg.sha512",

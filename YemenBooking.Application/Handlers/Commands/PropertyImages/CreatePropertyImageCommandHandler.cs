@@ -14,6 +14,7 @@ using YemenBooking.Core.Interfaces.Repositories;
 using YemenBooking.Core.Interfaces.Services;
 using YemenBooking.Core.Notifications;
 using CoreUnit = YemenBooking.Core.Entities.Unit;
+using System.Text.Json;
 
 namespace YemenBooking.Application.Handlers.Commands.PropertyImages;
 
@@ -399,6 +400,7 @@ public class CreatePropertyImageCommandHandler : IRequestHandler<CreatePropertyI
             Type = processedImage?.MimeType ?? "image/jpeg",
             SizeBytes = processedImage?.FileSize ?? 0,
             Tags = "[]", // يمكن إضافة وسوم
+            Sizes = JsonSerializer.Serialize(new { full = processedImage?.ProcessedUrl ?? request.Url, thumbnail = processedImage?.ThumbnailUrl ?? request.Url }),
             Views = 0,
             Downloads = 0,
             UploadedAt = now,

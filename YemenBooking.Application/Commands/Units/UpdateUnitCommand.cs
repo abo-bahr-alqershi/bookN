@@ -39,4 +39,11 @@ public class UpdateUnitCommand : IRequest<ResultDto<bool>>
     /// Updated pricing calculation method
     /// </summary>
     public PricingMethod? PricingMethod { get; set; }
+    
+    /// <summary>
+    /// قيم الحقول الديناميكية للوحدة
+    /// Dynamic field values for the unit
+    /// </summary>
+    public List<FieldValueDto> FieldValues { get; set; } = new List<FieldValueDto>();
+
 } 

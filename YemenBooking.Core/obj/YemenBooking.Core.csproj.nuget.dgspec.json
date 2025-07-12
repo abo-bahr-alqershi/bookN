@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/ameen/Desktop/YemenBookN/Backend/YemenBooking.Core/YemenBooking.Core.csproj": {}
+    "/home/ameen/Desktop/BookN/backend/YemenBooking.Core/YemenBooking.Core.csproj": {}
   },
   "projects": {
-    "/home/ameen/Desktop/YemenBookN/Backend/YemenBooking.Core/YemenBooking.Core.csproj": {
+    "/home/ameen/Desktop/BookN/backend/YemenBooking.Core/YemenBooking.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/ameen/Desktop/YemenBookN/Backend/YemenBooking.Core/YemenBooking.Core.csproj",
+        "projectUniqueName": "/home/ameen/Desktop/BookN/backend/YemenBooking.Core/YemenBooking.Core.csproj",
         "projectName": "YemenBooking.Core",
-        "projectPath": "/home/ameen/Desktop/YemenBookN/Backend/YemenBooking.Core/YemenBooking.Core.csproj",
+        "projectPath": "/home/ameen/Desktop/BookN/backend/YemenBooking.Core/YemenBooking.Core.csproj",
         "packagesPath": "/home/ameen/.nuget/packages/",
-        "outputPath": "/home/ameen/Desktop/YemenBookN/Backend/YemenBooking.Core/obj/",
+        "outputPath": "/home/ameen/Desktop/BookN/backend/YemenBooking.Core/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/ameen/.nuget/NuGet/NuGet.Config"

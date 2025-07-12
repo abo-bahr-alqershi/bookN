@@ -16,6 +16,7 @@ using YemenBooking.Core.Interfaces.Services;
 using YemenBooking.Core.Notifications;
 using CoreUnit = YemenBooking.Core.Entities.Unit;
 using YemenBooking.Application.DTOs;
+using System.Text.Json;
 
 namespace YemenBooking.Application.Handlers.Commands.PropertyImages;
 
@@ -425,6 +426,7 @@ public class UpdatePropertyImageCommandHandler : IRequestHandler<UpdatePropertyI
         {
             existingImage.Type = processedImage.MimeType;
             existingImage.SizeBytes = processedImage.FileSize;
+            existingImage.Sizes = JsonSerializer.Serialize(new { full = processedImage.ProcessedUrl, thumbnail = processedImage.ThumbnailUrl });
         }
     }
 

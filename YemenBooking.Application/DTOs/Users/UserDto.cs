@@ -49,5 +49,17 @@ namespace YemenBooking.Application.DTOs.Users
         /// Account activation status
         /// </summary>
         public bool IsActive { get; set; }
+
+        /// <summary>
+        /// إعدادات المستخدم بصيغة JSON
+        /// User settings JSON
+        /// </summary>
+        public string SettingsJson { get; set; } = "{}";
+
+        /// <summary>
+        /// قائمة المفضلة للمستخدم بصيغة JSON
+        /// User favorites JSON
+        /// </summary>
+        public string FavoritesJson { get; set; } = "[]";
     }
 } 

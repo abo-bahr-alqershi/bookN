@@ -94,12 +94,7 @@
             Get latest activity logs for property owners and staff
             </summary>
         </member>
-        <member name="T:YemenBooking.Api.Controllers.Admin.BookingsController">
-            <summary>
-            متحكم بإدارة الحجوزات للمدراء
-            Controller for booking management by admins
-            </summary>
-        </member>
+        <!-- Badly formed XML comment ignored for member "T:YemenBooking.Api.Controllers.Admin.BookingsController" -->
         <member name="M:YemenBooking.Api.Controllers.Admin.BookingsController.CancelBooking(System.Guid,YemenBooking.Application.Commands.Bookings.CancelBookingCommand)">
             <summary>
             إلغاء حجز
@@ -508,16 +503,28 @@
             Get property data for edit form
             </summary>
         </member>
-        <member name="M:YemenBooking.Api.Controllers.Admin.PropertiesController.GetPropertyFormFields(System.Guid,YemenBooking.Application.Queries.Properties.GetPropertyFormFieldsQuery)">
-            <summary>
-            جلب حقول النموذج لنوع العقار
-            Get form fields grouped by groups for a property type
-            </summary>
-        </member>
         <member name="M:YemenBooking.Api.Controllers.Admin.PropertiesController.GetPropertyAmenities(System.Guid,YemenBooking.Application.Queries.Properties.GetPropertyAmenitiesQuery)">
             <summary>
             استعلام للحصول على مرافق العقار
             Query to get property amenities
+            </summary>
+        </member>
+        <member name="M:YemenBooking.Api.Controllers.Admin.PropertiesController.GetPropertiesByCity(YemenBooking.Application.Queries.Properties.GetPropertiesByCityQuery)">
+            <summary>
+            الحصول على العقارات حسب المدينة
+            Get properties by city
+            </summary>
+        </member>
+        <member name="M:YemenBooking.Api.Controllers.Admin.PropertiesController.GetPropertiesByOwner(System.Guid,YemenBooking.Application.Queries.Properties.GetPropertiesByOwnerQuery)">
+            <summary>
+            الحصول على عقارات المالك
+            Get properties by owner
+            </summary>
+        </member>
+        <member name="M:YemenBooking.Api.Controllers.Admin.PropertiesController.GetPropertiesByType(System.Guid,YemenBooking.Application.Queries.Properties.GetPropertiesByTypeQuery)">
+            <summary>
+            الحصول على العقارات حسب النوع
+            Get properties by type
             </summary>
         </member>
         <member name="T:YemenBooking.Api.Controllers.Admin.PropertyImagesController">
@@ -690,49 +697,49 @@
         </member>
         <member name="T:YemenBooking.Api.Controllers.Admin.ReportsController">
             <summary>
-            متحكم بالتقارير للمدراء
-            Controller for report management by admins
+            متحكم بالبلاغات للمدراء
+            Controller for report management by admins (Reports as complaints)
             </summary>
         </member>
         <member name="M:YemenBooking.Api.Controllers.Admin.ReportsController.CreateReport(YemenBooking.Application.Commands.Reports.CreateReportCommand)">
             <summary>
-            إنشاء تقرير جديد
+            إنشاء بلاغ جديد
             Create a new report
             </summary>
         </member>
         <member name="M:YemenBooking.Api.Controllers.Admin.ReportsController.UpdateReport(System.Guid,YemenBooking.Application.Commands.Reports.UpdateReportCommand)">
             <summary>
-            تحديث تقرير
+            تحديث بلاغ
             Update an existing report
             </summary>
         </member>
         <member name="M:YemenBooking.Api.Controllers.Admin.ReportsController.DeleteReport(System.Guid)">
             <summary>
-            حذف تقرير
+            حذف بلاغ
             Delete a report
             </summary>
         </member>
         <member name="M:YemenBooking.Api.Controllers.Admin.ReportsController.GetAllReports(YemenBooking.Application.Queries.Reports.GetAllReportsQuery)">
             <summary>
-            جلب جميع التقارير
+            جلب جميع البلاغات
             Get all reports with pagination
             </summary>
         </member>
         <member name="M:YemenBooking.Api.Controllers.Admin.ReportsController.GetReportById(System.Guid)">
             <summary>
-            جلب تقرير بواسطة المعرف
+            جلب بلاغ بواسطة المعرف
             Get a report by ID
             </summary>
         </member>
         <member name="M:YemenBooking.Api.Controllers.Admin.ReportsController.GetReportsByProperty(System.Guid,YemenBooking.Application.Queries.Reports.GetReportsByPropertyQuery)">
             <summary>
-            جلب التقارير حسب عقار
+            جلب البلاغات حسب عقار
             Get reports by property
             </summary>
         </member>
         <member name="M:YemenBooking.Api.Controllers.Admin.ReportsController.GetReportsByReportedUser(System.Guid,YemenBooking.Application.Queries.Reports.GetReportsByReportedUserQuery)">
             <summary>
-            جلب التقارير حسب مستخدم مبلّغ
+            جلب البلاغات حسب المستخدم المبلّغ عنه
             Get reports by reported user
             </summary>
         </member>
@@ -2206,28 +2213,10 @@
             Get property data for edit form
             </summary>
         </member>
-        <member name="M:YemenBooking.Api.Controllers.Property.PropertiesController.GetPropertyFormFields(System.Guid,YemenBooking.Application.Queries.Properties.GetPropertyFormFieldsQuery)">
-            <summary>
-            جلب حقول النموذج لنوع العقار
-            Get form fields grouped by groups for a property type
-            </summary>
-        </member>
         <member name="M:YemenBooking.Api.Controllers.Property.PropertiesController.GetPropertiesByCity(YemenBooking.Application.Queries.Properties.GetPropertiesByCityQuery)">
             <summary>
             الحصول على العقارات حسب المدينة
             Get properties by city
-            </summary>
-        </member>
-        <member name="M:YemenBooking.Api.Controllers.Property.PropertiesController.GetPropertiesByOwner(System.Guid,YemenBooking.Application.Queries.Properties.GetPropertiesByOwnerQuery)">
-            <summary>
-            الحصول على عقارات المالك
-            Get properties by owner
-            </summary>
-        </member>
-        <member name="M:YemenBooking.Api.Controllers.Property.PropertiesController.GetPropertiesByType(System.Guid,YemenBooking.Application.Queries.Properties.GetPropertiesByTypeQuery)">
-            <summary>
-            الحصول على العقارات حسب النوع
-            Get properties by type
             </summary>
         </member>
         <member name="M:YemenBooking.Api.Controllers.Property.PropertiesController.GetPropertyRatingStats(System.Guid,YemenBooking.Application.Queries.Reviews.GetPropertyRatingStatsQuery)">
@@ -2390,54 +2379,6 @@
             <summary>
             جلب نوع عقار بواسطة المعرف
             Get a property type by its ID
-            </summary>
-        </member>
-        <member name="T:YemenBooking.Api.Controllers.Property.ReportsController">
-            <summary>
-            متحكم بالتقارير لأصحاب العقارات
-            Controller for report management by property owners
-            </summary>
-        </member>
-        <member name="M:YemenBooking.Api.Controllers.Property.ReportsController.CreateReport(YemenBooking.Application.Commands.Reports.CreateReportCommand)">
-            <summary>
-            إنشاء تقرير جديد
-            Create a new report
-            </summary>
-        </member>
-        <member name="M:YemenBooking.Api.Controllers.Property.ReportsController.UpdateReport(System.Guid,YemenBooking.Application.Commands.Reports.UpdateReportCommand)">
-            <summary>
-            تحديث تقرير
-            Update an existing report
-            </summary>
-        </member>
-        <member name="M:YemenBooking.Api.Controllers.Property.ReportsController.DeleteReport(System.Guid)">
-            <summary>
-            حذف تقرير
-            Delete a report
-            </summary>
-        </member>
-        <member name="M:YemenBooking.Api.Controllers.Property.ReportsController.GetAllReports(YemenBooking.Application.Queries.Reports.GetAllReportsQuery)">
-            <summary>
-            جلب جميع التقارير
-            Get all reports with pagination
-            </summary>
-        </member>
-        <member name="M:YemenBooking.Api.Controllers.Property.ReportsController.GetReportById(System.Guid)">
-            <summary>
-            جلب تقرير بواسطة المعرف
-            Get a report by ID
-            </summary>
-        </member>
-        <member name="M:YemenBooking.Api.Controllers.Property.ReportsController.GetReportsByProperty(System.Guid,YemenBooking.Application.Queries.Reports.GetReportsByPropertyQuery)">
-            <summary>
-            جلب التقارير حسب عقار
-            Get reports by property
-            </summary>
-        </member>
-        <member name="M:YemenBooking.Api.Controllers.Property.ReportsController.GetReportsByReportedUser(System.Guid,YemenBooking.Application.Queries.Reports.GetReportsByReportedUserQuery)">
-            <summary>
-            جلب التقارير حسب مستخدم مبلّغ
-            Get reports by reported user
             </summary>
         </member>
         <member name="T:YemenBooking.Api.Controllers.Property.ReviewsController">

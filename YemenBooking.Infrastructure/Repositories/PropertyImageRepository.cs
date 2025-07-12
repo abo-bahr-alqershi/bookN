@@ -56,14 +56,14 @@ public class PropertyImageRepository : BaseRepository<PropertyImage>, IPropertyI
     public async Task<IEnumerable<PropertyImage>> GetImagesByPropertyAsync(Guid propertyId, CancellationToken cancellationToken = default)
         => await _dbSet
             .Where(pi => pi.PropertyId == propertyId && !pi.IsDeleted)
-            .OrderBy(pi => pi.SortOrder)
+            .OrderBy(pi => pi.DisplayOrder)
             .ThenBy(pi => pi.CreatedAt)
             .ToListAsync(cancellationToken);
 
     public async Task<IEnumerable<PropertyImage>> GetImagesByUnitAsync(Guid unitId, CancellationToken cancellationToken = default)
         => await _dbSet
             .Where(pi => pi.UnitId == unitId && !pi.IsDeleted)
-            .OrderBy(pi => pi.SortOrder)
+            .OrderBy(pi => pi.DisplayOrder)
             .ThenBy(pi => pi.CreatedAt)
             .ToListAsync(cancellationToken);
 

@@ -77,6 +77,29 @@ namespace YemenBooking.Api.Controllers.Property
             return Ok(result);
         }
 
+                /// <summary>
+        /// تعيين صور متعددة لعقارات
+        /// Bulk assign images to properties
+        /// </summary>
+        [HttpPost("bulk-assign/property")]
+        public async Task<IActionResult> BulkAssignImagesToProperties([FromBody] BulkAssignImageToPropertyCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// تعيين صور متعددة لوحدات
+        /// Bulk assign images to units
+        /// </summary>
+        [HttpPost("bulk-assign/unit")]
+        public async Task<IActionResult> BulkAssignImagesToUnits([FromBody] BulkAssignImageToUnitCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+
         /// <summary>
         /// جلب جميع صور العقار
         /// Get all property images
@@ -99,5 +122,17 @@ namespace YemenBooking.Api.Controllers.Property
             var result = await _mediator.Send(query);
             return Ok(result);
         }
+
+                /// <summary>
+        /// إعادة ترتيب صور العقار
+        /// Reorder property images display order
+        /// </summary>
+        [HttpPut("order")]
+        public async Task<IActionResult> ReorderPropertyImages([FromBody] ReorderPropertyImagesCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
     }
 } 

@@ -95,34 +95,37 @@ namespace YemenBooking.Application.Handlers.Queries.Units
                     PricingMethod = unit.PricingMethod,
                     FieldValues = new List<UnitFieldValueDto>()
                 };
-
-                var groups = await _groupRepository.GetGroupsByPropertyTypeIdAsync(unit.UnitTypeId, cancellationToken);
-                foreach (var group in groups.OrderBy(g => g.SortOrder))
+                // Include dynamic fields if requested
+                if (request.IncludeDynamicFields)
                 {
-                    var groupDto = new FieldGroupWithValuesDto
+                    var groups = await _groupRepository.GetGroupsByPropertyTypeIdAsync(unit.UnitTypeId, cancellationToken);
+                    foreach (var group in groups.OrderBy(g => g.SortOrder))
                     {
-                        GroupId = group.Id,
-                        GroupName = group.GroupName,
-                        DisplayName = group.DisplayName,
-                        Description = group.Description,
-                        FieldValues = new List<FieldWithValueDto>()
-                    };
-                    foreach (var link in group.FieldGroupFields.OrderBy(l => l.SortOrder))
-                    {
-                        var valueEntity = unit.FieldValues.FirstOrDefault(v => v.UnitTypeFieldId == link.FieldId);
-                        if (valueEntity != null)
+                        var groupDto = new FieldGroupWithValuesDto
                         {
-                            groupDto.FieldValues.Add(new FieldWithValueDto
+                            GroupId = group.Id,
+                            GroupName = group.GroupName,
+                            DisplayName = group.DisplayName,
+                            Description = group.Description,
+                            FieldValues = new List<FieldWithValueDto>()
+                        };
+                        foreach (var link in group.FieldGroupFields.OrderBy(l => l.SortOrder))
+                        {
+                            var valueEntity = unit.FieldValues.FirstOrDefault(v => v.UnitTypeFieldId == link.FieldId);
+                            if (valueEntity != null)
                             {
-                                ValueId = valueEntity.Id,
-                                FieldId = link.FieldId,
-                                FieldName = link.UnitTypeField.FieldName,
-                                DisplayName = link.UnitTypeField.DisplayName,
-                                Value = valueEntity.FieldValue
-                            });
+                                groupDto.FieldValues.Add(new FieldWithValueDto
+                                {
+                                    ValueId = valueEntity.Id,
+                                    FieldId = link.FieldId,
+                                    FieldName = link.UnitTypeField.FieldName,
+                                    DisplayName = link.UnitTypeField.DisplayName,
+                                    Value = valueEntity.FieldValue
+                                });
+                            }
                         }
+                        dto.DynamicFields.Add(groupDto);
                     }
-                    dto.DynamicFields.Add(groupDto);
                 }
                 dtos.Add(dto);
             }

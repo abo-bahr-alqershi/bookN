@@ -21,10 +21,4 @@ public class GetPropertyDetailsQuery : IRequest<ResultDto<PropertyDetailsDto>>
     /// IncludeUnits
     /// </summary>
     public bool IncludeUnits { get; set; } = true;
-
-    /// <summary>
-    /// تضمين القيم الديناميكية (اختياري)
-    /// IncludeDynamicFields
-    /// </summary>
-    public bool IncludeDynamicFields { get; set; } = true;
 } 

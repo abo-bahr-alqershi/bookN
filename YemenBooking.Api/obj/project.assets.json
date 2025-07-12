@@ -7592,11 +7592,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/ameen/Desktop/YemenBookN/Backend/YemenBooking.Api/YemenBooking.Api.csproj",
+      "projectUniqueName": "/home/ameen/Desktop/BookN/backend/YemenBooking.Api/YemenBooking.Api.csproj",
       "projectName": "YemenBooking.Api",
-      "projectPath": "/home/ameen/Desktop/YemenBookN/Backend/YemenBooking.Api/YemenBooking.Api.csproj",
+      "projectPath": "/home/ameen/Desktop/BookN/backend/YemenBooking.Api/YemenBooking.Api.csproj",
       "packagesPath": "/home/ameen/.nuget/packages/",
-      "outputPath": "/home/ameen/Desktop/YemenBookN/Backend/YemenBooking.Api/obj/",
+      "outputPath": "/home/ameen/Desktop/BookN/backend/YemenBooking.Api/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/ameen/.nuget/NuGet/NuGet.Config"
@@ -7612,11 +7612,11 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "/home/ameen/Desktop/YemenBookN/Backend/YemenBooking.Application/YemenBooking.Application.csproj": {
-              "projectPath": "/home/ameen/Desktop/YemenBookN/Backend/YemenBooking.Application/YemenBooking.Application.csproj"
+            "/home/ameen/Desktop/BookN/backend/YemenBooking.Application/YemenBooking.Application.csproj": {
+              "projectPath": "/home/ameen/Desktop/BookN/backend/YemenBooking.Application/YemenBooking.Application.csproj"
             },
-            "/home/ameen/Desktop/YemenBookN/Backend/YemenBooking.Infrastructure/YemenBooking.Infrastructure.csproj": {
-              "projectPath": "/home/ameen/Desktop/YemenBookN/Backend/YemenBooking.Infrastructure/YemenBooking.Infrastructure.csproj"
+            "/home/ameen/Desktop/BookN/backend/YemenBooking.Infrastructure/YemenBooking.Infrastructure.csproj": {
+              "projectPath": "/home/ameen/Desktop/BookN/backend/YemenBooking.Infrastructure/YemenBooking.Infrastructure.csproj"
             }
           }
         }

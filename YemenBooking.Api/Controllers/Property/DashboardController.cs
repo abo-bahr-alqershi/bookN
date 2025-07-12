@@ -36,8 +36,9 @@ namespace YemenBooking.Api.Controllers.Property
         [HttpPost("dashboard/export")]
         public async Task<IActionResult> ExportDashboardReport([FromBody] ExportDashboardReportCommand command)
         {
-            var result = await _mediator.Send(command);
-            return Ok(result);
+            var fileBytes = await _mediator.Send(command);
+            var fileName = $"{command.DashboardType}_Report_{DateTime.UtcNow:yyyyMMddHHmmss}.{command.Format.ToString().ToLower()}";
+            return File(fileBytes, "application/octet-stream", fileName);
         }
 
         /// <summary>

@@ -68,7 +68,13 @@ public class PropertyImage : BaseEntity
     /// Image tags (JSON)
     /// </summary>
     public string Tags { get; set; }
-    
+
+    /// <summary>
+    /// أحجام الصورة (JSON)
+    /// Image sizes (JSON) - mapping keys to URLs for different sizes (e.g. thumbnail, medium, large)
+    /// </summary>
+    public string Sizes { get; set; }
+
     /// <summary>
     /// هل هي الصورة الرئيسية
     /// Is main image

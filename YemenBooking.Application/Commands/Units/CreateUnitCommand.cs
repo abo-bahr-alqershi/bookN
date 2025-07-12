@@ -45,4 +45,11 @@ public class CreateUnitCommand : IRequest<ResultDto<Guid>>
     /// Pricing calculation method (Hourly, Daily, Weekly, Monthly)
     /// </summary>
     public PricingMethod PricingMethod { get; set; }
+
+    /// <summary>
+    /// قيم الحقول الديناميكية للوحدة
+    /// Dynamic field values for the unit
+    /// </summary>
+    public List<FieldValueDto> FieldValues { get; set; } = new List<FieldValueDto>();
+
 } 

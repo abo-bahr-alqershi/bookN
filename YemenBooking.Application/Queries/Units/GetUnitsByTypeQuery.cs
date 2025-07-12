@@ -56,4 +56,11 @@ public class GetUnitsByTypeQuery : IRequest<PaginatedResult<UnitDto>>
     /// Name search: name or number (optional)
     /// </summary>
     public string? NameContains { get; set; }
+
+    /// <summary>
+    /// تضمين القيم الديناميكية (اختياري)
+    /// Include dynamic field values
+    /// </summary>
+    public bool IncludeDynamicFields { get; set; } = true;
+
 } 

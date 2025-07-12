@@ -105,8 +105,7 @@ namespace YemenBooking.Application.Handlers.Queries.Properties
                             PropertyName = property.Name,
                             UnitTypeName = u.UnitType.Name,
                             PricingMethod = u.PricingMethod,
-                            FieldValues = request.IncludeDynamicFields
-                                ? u.FieldValues.OrderBy(fv => fv.CreatedAt).Select(fv => new UnitFieldValueDto
+                            FieldValues = u.FieldValues.OrderBy(fv => fv.CreatedAt).Select(fv => new UnitFieldValueDto
                                 {
                                     ValueId = fv.Id,
                                     UnitId = fv.UnitId,
@@ -134,7 +133,6 @@ namespace YemenBooking.Application.Handlers.Queries.Properties
                                     CreatedAt = fv.CreatedAt,
                                     UpdatedAt = fv.UpdatedAt
                                 }).ToList()
-                                : new List<UnitFieldValueDto>()
                         }).ToList()
                         : new List<UnitDto>(),
                     Amenities = property.Amenities.Select(pa => new AmenityDto

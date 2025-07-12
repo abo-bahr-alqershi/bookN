@@ -76,6 +76,12 @@ namespace YemenBooking.Application.DTOs
         public string Tags { get; set; } = string.Empty;
 
         /// <summary>
+        /// أحجام الصورة (JSON)
+        /// Image sizes (JSON) - mapping keys to URLs for different sizes (e.g. thumbnail, medium, large)
+        /// </summary>
+        public string Sizes { get; set; } = string.Empty;
+
+        /// <summary>
         /// هل هي الصورة الرئيسية
         /// Is main image
         /// </summary>
@@ -98,5 +104,11 @@ namespace YemenBooking.Application.DTOs
         /// Image status
         /// </summary>
         public ImageStatus Status { get; set; }
+
+        /// <summary>
+        /// نوع ارتباط الصورة (Property أو Unit)
+        /// Association type indicating whether the image is linked to a property or a unit
+        /// </summary>
+        public string AssociationType { get; set; } = string.Empty;
     }
 } 

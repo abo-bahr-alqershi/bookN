@@ -190,6 +190,12 @@ public class YemenBookingDbContext : DbContext
     /// </summary>
     public DbSet<UnitFieldValue> UnitFieldValues { get; set; }
 
+    /// <summary>
+    /// جدول سجلات البحث
+    /// Search logs table
+    /// </summary>
+    public DbSet<SearchLog> SearchLogs { get; set; }
+
 
     #endregion
 
@@ -224,6 +230,9 @@ public class YemenBookingDbContext : DbContext
         modelBuilder.ApplyConfiguration(new PropertyPolicyConfiguration());
         modelBuilder.ApplyConfiguration(new StaffConfiguration());
         modelBuilder.ApplyConfiguration(new AdminActionConfiguration());
+
+        // تكوين سجل البحث
+        modelBuilder.ApplyConfiguration(new SearchLogConfiguration());
 
         // Configurations for new entities
         modelBuilder.ApplyConfiguration(new NotificationConfiguration());

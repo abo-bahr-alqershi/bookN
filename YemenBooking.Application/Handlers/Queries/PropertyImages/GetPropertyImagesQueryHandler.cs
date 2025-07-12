@@ -9,6 +9,7 @@ using YemenBooking.Application.DTOs;
 using YemenBooking.Application.Queries.PropertyImages;
 using YemenBooking.Core.Interfaces.Repositories;
 using YemenBooking.Application.Exceptions;
+using Microsoft.EntityFrameworkCore;
 
 namespace YemenBooking.Application.Handlers.Queries.PropertyImages
 {
@@ -16,7 +17,7 @@ namespace YemenBooking.Application.Handlers.Queries.PropertyImages
     /// معالج استعلام الحصول على صور العقار
     /// Query handler for GetPropertyImagesQuery
     /// </summary>
-    public class GetPropertyImagesQueryHandler : IRequestHandler<GetPropertyImagesQuery, ResultDto<IEnumerable<PropertyImageDto>>>
+    public class GetPropertyImagesQueryHandler : IRequestHandler<GetPropertyImagesQuery, ResultDto<PaginatedResult<PropertyImageDto>>>
     {
         private readonly IPropertyImageRepository _repo;
         private readonly ILogger<GetPropertyImagesQueryHandler> _logger;
@@ -27,14 +28,26 @@ namespace YemenBooking.Application.Handlers.Queries.PropertyImages
             _logger = logger;
         }
 
-        public async Task<ResultDto<IEnumerable<PropertyImageDto>>> Handle(GetPropertyImagesQuery request, CancellationToken cancellationToken)
+        public async Task<ResultDto<PaginatedResult<PropertyImageDto>>> Handle(GetPropertyImagesQuery request, CancellationToken cancellationToken)
         {
-            _logger.LogInformation("جاري معالجة استعلام صور العقار: {PropertyId}", request.PropertyId);
+            _logger.LogInformation("جاري معالجة استعلام صور العقار: PropertyId={PropertyId}, UnitId={UnitId}, PageNumber={PageNumber}, PageSize={PageSize}", request.PropertyId, request.UnitId, request.PageNumber, request.PageSize);
 
-            if (request.PropertyId == Guid.Empty)
-                throw new ValidationException(nameof(request.PropertyId), "معرف العقار غير صالح");
+            var queryable = _repo.GetQueryable();
 
-            var images = await _repo.GetImagesByPropertyAsync(request.PropertyId, cancellationToken);
+            if (request.PropertyId.HasValue)
+                queryable = queryable.Where(img => img.PropertyId == request.PropertyId.Value);
+
+            if (request.UnitId.HasValue)
+                queryable = queryable.Where(img => img.UnitId == request.UnitId.Value);
+
+            var totalCount = await queryable.CountAsync(cancellationToken);
+
+            var images = await queryable
+                .OrderBy(img => img.DisplayOrder)
+                .ThenBy(img => img.CreatedAt)
+                .Skip((request.PageNumber - 1) * request.PageSize)
+                .Take(request.PageSize)
+                .ToListAsync(cancellationToken);
 
             var dtos = images.Select(img => new PropertyImageDto
             {
@@ -49,13 +62,17 @@ namespace YemenBooking.Application.Handlers.Queries.PropertyImages
                 Caption = img.Caption,
                 AltText = img.AltText,
                 Tags = img.Tags,
+                Sizes = img.Sizes,
                 IsMain = img.IsMain,
                 DisplayOrder = img.DisplayOrder,
                 UploadedAt = img.UploadedAt,
-                Status = img.Status
+                Status = img.Status,
+                AssociationType = img.PropertyId.HasValue ? "Property" : img.UnitId.HasValue ? "Unit" : string.Empty
             }).ToList();
 
-            return ResultDto<IEnumerable<PropertyImageDto>>.Ok(dtos, "تم جلب صور العقار بنجاح");
+            var pagedResult = PaginatedResult<PropertyImageDto>.Create(dtos, request.PageNumber, request.PageSize, totalCount);
+
+            return ResultDto<PaginatedResult<PropertyImageDto>>.Ok(pagedResult, "تم جلب صور العقار بنجاح");
         }
     }
 } 

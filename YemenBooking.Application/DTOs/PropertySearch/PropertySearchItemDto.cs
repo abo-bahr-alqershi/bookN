@@ -94,11 +94,6 @@ namespace YemenBooking.Application.DTOs.PropertySearch
         public int AvailableUnitsCount { get; set; }
 
         /// <summary>
-        /// بيانات الحقول الديناميكية
-        /// </summary>
-        public Dictionary<string, object> DynamicFields { get; set; } = new Dictionary<string, object>();
-
-        /// <summary>
         /// السعة القصوى
         /// </summary>
         public int MaxCapacity { get; set; }

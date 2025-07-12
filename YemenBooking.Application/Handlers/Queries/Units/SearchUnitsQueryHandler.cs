@@ -15,6 +15,7 @@ using YemenBooking.Core.Interfaces.Repositories;
 using YemenBooking.Core.Interfaces.Services;
 using UnitEntity = YemenBooking.Core.Entities.Unit;
 using System.Text.Json;
+using YemenBooking.Core.Entities;
 
 namespace YemenBooking.Application.Handlers.Queries.Units
 {
@@ -28,17 +29,20 @@ namespace YemenBooking.Application.Handlers.Queries.Units
         private readonly IAvailabilityService _availabilityService;
         private readonly ICurrentUserService _currentUserService;
         private readonly ILogger<SearchUnitsQueryHandler> _logger;
+        private readonly ISearchLogRepository _searchLogRepository;
 
         public SearchUnitsQueryHandler(
             IUnitRepository unitRepository,
             IAvailabilityService availabilityService,
             ICurrentUserService currentUserService,
-            ILogger<SearchUnitsQueryHandler> logger)
+            ILogger<SearchUnitsQueryHandler> logger,
+            ISearchLogRepository searchLogRepository)
         {
             _unitRepository = unitRepository;
             _availabilityService = availabilityService;
             _currentUserService = currentUserService;
             _logger = logger;
+            _searchLogRepository = searchLogRepository;
         }
 
         public async Task<PaginatedResult<UnitDto>> Handle(SearchUnitsQuery request, CancellationToken cancellationToken)
@@ -208,6 +212,18 @@ namespace YemenBooking.Application.Handlers.Queries.Units
             }).ToList();
 
             _logger.LogInformation("تم جلب {Count} وحدة من إجمالي {TotalCount} بعد البحث", dtos.Count, totalCount);
+
+            // سجل عملية البحث
+            await _searchLogRepository.AddAsync(new SearchLog
+            {
+                UserId = _currentUserService.UserId,
+                SearchType = "Unit",
+                CriteriaJson = JsonSerializer.Serialize(request),
+                ResultCount = totalCount,
+                PageNumber = request.PageNumber,
+                PageSize = request.PageSize
+            }, cancellationToken);
+
             return new PaginatedResult<UnitDto>
             {
                 Items = dtos,

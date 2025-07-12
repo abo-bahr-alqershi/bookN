@@ -23,15 +23,18 @@ namespace YemenBooking.Application.Handlers.Queries.Units
         private readonly IUnitRepository _unitRepository;
         private readonly ICurrentUserService _currentUserService;
         private readonly ILogger<GetUnitDetailsQueryHandler> _logger;
+        private readonly IFieldGroupRepository _groupRepository;
 
         public GetUnitDetailsQueryHandler(
             IUnitRepository unitRepository,
             ICurrentUserService currentUserService,
-            ILogger<GetUnitDetailsQueryHandler> logger)
+            ILogger<GetUnitDetailsQueryHandler> logger,
+            IFieldGroupRepository groupRepository)
         {
             _unitRepository = unitRepository;
             _currentUserService = currentUserService;
             _logger = logger;
+            _groupRepository = groupRepository;
         }
 
         public async Task<ResultDto<UnitDetailsDto>> Handle(GetUnitDetailsQuery request, CancellationToken cancellationToken)
@@ -60,9 +63,38 @@ namespace YemenBooking.Application.Handlers.Queries.Units
                 }
             }
 
-            // تم تعطيل تجميع الحقول الديناميكية مؤقتاً لتجنب أخطاء التوثيق
-            var fieldGroups = new List<FieldGroupWithValuesDto>();
-
+            var dynamicFields = new List<FieldGroupWithValuesDto>();
+            if (request.IncludeDynamicFields)
+            {
+                var groups = await _groupRepository.GetGroupsByPropertyTypeIdAsync(unit.UnitTypeId, cancellationToken);
+                foreach (var group in groups.OrderBy(g => g.SortOrder))
+                {
+                    var groupDto = new FieldGroupWithValuesDto
+                    {
+                        GroupId = group.Id,
+                        GroupName = group.GroupName,
+                        DisplayName = group.DisplayName,
+                        Description = group.Description,
+                        FieldValues = new List<FieldWithValueDto>()
+                    };
+                    foreach (var link in group.FieldGroupFields.OrderBy(l => l.SortOrder))
+                    {
+                        var valueEntity = unit.FieldValues.FirstOrDefault(v => v.UnitTypeFieldId == link.FieldId);
+                        if (valueEntity != null)
+                        {
+                            groupDto.FieldValues.Add(new FieldWithValueDto
+                            {
+                                ValueId = valueEntity.Id,
+                                FieldId = link.FieldId,
+                                FieldName = link.UnitTypeField.FieldName,
+                                DisplayName = link.UnitTypeField.DisplayName,
+                                Value = valueEntity.FieldValue
+                            });
+                        }
+                    }
+                    dynamicFields.Add(groupDto);
+                }
+            }
             var dto = new UnitDetailsDto
             {
                 Id = unit.Id,
@@ -72,6 +104,9 @@ namespace YemenBooking.Application.Handlers.Queries.Units
                 BasePrice = new MoneyDto { Amount = unit.BasePrice.Amount, Currency = unit.BasePrice.Currency },
                 CustomFeatures = unit.CustomFeatures,
                 IsAvailable = unit.IsAvailable,
+                MaxCapacity = unit.MaxCapacity,
+                ViewCount = unit.ViewCount,
+                BookingCount = unit.BookingCount,
                 PropertyName = unit.Property.Name,
                 UnitTypeName = unit.UnitType.Name,
                 PricingMethod = unit.PricingMethod,
@@ -80,7 +115,7 @@ namespace YemenBooking.Application.Handlers.Queries.Units
                     FieldId = fv.UnitTypeFieldId,
                     FieldValue = fv.FieldValue
                 }).ToList(),
-                DynamicFields = request.IncludeDynamicFields ? fieldGroups : new List<FieldGroupWithValuesDto>()
+                DynamicFields = dynamicFields
             };
 
             _logger.LogInformation("تم جلب تفاصيل الوحدة بنجاح: {UnitId}", request.UnitId);

@@ -9,15 +9,15 @@ using YemenBooking.Application.Queries.Reports;
 namespace YemenBooking.Api.Controllers.Admin
 {
     /// <summary>
-    /// متحكم بالتقارير للمدراء
-    /// Controller for report management by admins
+    /// متحكم بالبلاغات للمدراء
+    /// Controller for report management by admins (Reports as complaints)
     /// </summary>
     public class ReportsController : BaseAdminController
     {
         public ReportsController(IMediator mediator) : base(mediator) { }
 
         /// <summary>
-        /// إنشاء تقرير جديد
+        /// إنشاء بلاغ جديد
         /// Create a new report
         /// </summary>
         [HttpPost]
@@ -28,7 +28,7 @@ namespace YemenBooking.Api.Controllers.Admin
         }
 
         /// <summary>
-        /// تحديث تقرير
+        /// تحديث بلاغ
         /// Update an existing report
         /// </summary>
         [HttpPut("{reportId}")]
@@ -40,7 +40,7 @@ namespace YemenBooking.Api.Controllers.Admin
         }
 
         /// <summary>
-        /// حذف تقرير
+        /// حذف بلاغ
         /// Delete a report
         /// </summary>
         [HttpDelete("{reportId}")]
@@ -52,7 +52,7 @@ namespace YemenBooking.Api.Controllers.Admin
         }
 
         /// <summary>
-        /// جلب جميع التقارير
+        /// جلب جميع البلاغات
         /// Get all reports with pagination
         /// </summary>
         [HttpGet]
@@ -63,7 +63,7 @@ namespace YemenBooking.Api.Controllers.Admin
         }
 
         /// <summary>
-        /// جلب تقرير بواسطة المعرف
+        /// جلب بلاغ بواسطة المعرف
         /// Get a report by ID
         /// </summary>
         [HttpGet("{reportId}")]
@@ -75,7 +75,7 @@ namespace YemenBooking.Api.Controllers.Admin
         }
 
         /// <summary>
-        /// جلب التقارير حسب عقار
+        /// جلب البلاغات حسب عقار
         /// Get reports by property
         /// </summary>
         [HttpGet("property/{propertyId}")]
@@ -87,7 +87,7 @@ namespace YemenBooking.Api.Controllers.Admin
         }
 
         /// <summary>
-        /// جلب التقارير حسب مستخدم مبلّغ
+        /// جلب البلاغات حسب المستخدم المبلّغ عنه
         /// Get reports by reported user
         /// </summary>
         [HttpGet("reported-user/{reportedUserId}")]

@@ -9,11 +9,29 @@ namespace YemenBooking.Application.Queries.PropertyImages;
 /// استعلام للحصول على جميع الصور الخاصة بعقار محدد
 /// Query to get all images for a specific property
 /// </summary>
-public class GetPropertyImagesQuery : IRequest<ResultDto<IEnumerable<PropertyImageDto>>>
+public class GetPropertyImagesQuery : IRequest<ResultDto<PaginatedResult<PropertyImageDto>>>
 {
     /// <summary>
-    /// معرف العقار
-    /// Property identifier
+    /// معرف العقار (اختياري)
+    /// Property identifier (optional)
     /// </summary>
-    public Guid PropertyId { get; set; }
+    public Guid? PropertyId { get; set; }
+
+    /// <summary>
+    /// معرف الوحدة (اختياري)
+    /// Unit identifier (optional)
+    /// </summary>
+    public Guid? UnitId { get; set; }
+
+    /// <summary>
+    /// رقم الصفحة
+    /// Page number
+    /// </summary>
+    public int PageNumber { get; set; } = 1;
+
+    /// <summary>
+    /// حجم الصفحة
+    /// Page size
+    /// </summary>
+    public int PageSize { get; set; } = 10;
 } 

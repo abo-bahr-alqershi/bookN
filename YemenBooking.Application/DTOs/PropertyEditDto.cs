@@ -18,5 +18,4 @@ public class PropertyEditDto
     public int? StarRating { get; set; }
     public string Description { get; set; }
     public Guid PropertyTypeId { get; set; }
-    public List<FieldGroupWithValuesDto> DynamicFields { get; set; }
 } 

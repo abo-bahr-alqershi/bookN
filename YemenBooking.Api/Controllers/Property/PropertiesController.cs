@@ -88,18 +88,6 @@ namespace YemenBooking.Api.Controllers.Property
         }
 
         /// <summary>
-        /// جلب حقول النموذج لنوع العقار
-        /// Get form fields grouped by groups for a property type
-        /// </summary>
-        [HttpGet("form-fields/{propertyTypeId}")]
-        public async Task<IActionResult> GetPropertyFormFields(Guid propertyTypeId, [FromQuery] GetPropertyFormFieldsQuery query)
-        {
-            query.PropertyTypeId = propertyTypeId;
-            var result = await _mediator.Send(query);
-            return Ok(result);
-        }
-
-        /// <summary>
         /// الحصول على العقارات حسب المدينة
         /// Get properties by city
         /// </summary>
@@ -110,29 +98,6 @@ namespace YemenBooking.Api.Controllers.Property
             return Ok(result);
         }
 
-        /// <summary>
-        /// الحصول على عقارات المالك
-        /// Get properties by owner
-        /// </summary>
-        [HttpGet("owner/{ownerId}")]
-        public async Task<IActionResult> GetPropertiesByOwner(Guid ownerId, [FromQuery] GetPropertiesByOwnerQuery query)
-        {
-            query.OwnerId = ownerId;
-            var result = await _mediator.Send(query);
-            return Ok(result);
-        }
-
-        /// <summary>
-        /// الحصول على العقارات حسب النوع
-        /// Get properties by type
-        /// </summary>
-        [HttpGet("type/{propertyTypeId}")]
-        public async Task<IActionResult> GetPropertiesByType(Guid propertyTypeId, [FromQuery] GetPropertiesByTypeQuery query)
-        {
-            query.PropertyTypeId = propertyTypeId;
-            var result = await _mediator.Send(query);
-            return Ok(result);
-        }
 
         /// <summary>
         /// الحصول على إحصائيات تقييم العقار

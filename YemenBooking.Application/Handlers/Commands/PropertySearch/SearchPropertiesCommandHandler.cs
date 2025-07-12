@@ -15,6 +15,8 @@ using YemenBooking.Core.Interfaces.Services;
 using YemenBooking.Core.Specifications;
 using Newtonsoft.Json;
 using YemenBooking.Application.DTOs.PropertySearch;
+using System.Text.Json;
+using Newtonsoft.Json;
 
 namespace YemenBooking.Application.Handlers.Commands.PropertySearch;
 
@@ -48,6 +50,7 @@ public class SearchPropertiesCommandHandler : IRequestHandler<SearchPropertiesCo
     private readonly ICurrentUserService _currentUserService;
     private readonly IAuditService _auditService;
     private readonly ILogger<SearchPropertiesCommandHandler> _logger;
+    private readonly ISearchLogRepository _searchLogRepository;
 
     public SearchPropertiesCommandHandler(
         IPropertyRepository propertyRepository,
@@ -57,7 +60,8 @@ public class SearchPropertiesCommandHandler : IRequestHandler<SearchPropertiesCo
         ISearchService searchService,
         ICurrentUserService currentUserService,
         IAuditService auditService,
-        ILogger<SearchPropertiesCommandHandler> logger)
+        ILogger<SearchPropertiesCommandHandler> logger,
+        ISearchLogRepository searchLogRepository)
     {
         _propertyRepository = propertyRepository;
         _searchFilterRepository = searchFilterRepository;
@@ -67,6 +71,7 @@ public class SearchPropertiesCommandHandler : IRequestHandler<SearchPropertiesCo
         _currentUserService = currentUserService;
         _auditService = auditService;
         _logger = logger;
+        _searchLogRepository = searchLogRepository;
     }
 
     /// <summary>
@@ -144,6 +149,17 @@ public class SearchPropertiesCommandHandler : IRequestHandler<SearchPropertiesCo
             stopwatch.Stop();
             _logger.LogInformation("تم إنجاز البحث بنجاح. النتائج: {Count}, الوقت: {Duration}ms", 
                 totalCount, stopwatch.ElapsedMilliseconds);
+
+            // سجل عملية البحث
+            await _searchLogRepository.AddAsync(new SearchLog
+            {
+                UserId = _currentUserService.UserId,
+                SearchType = "Property",
+                CriteriaJson = JsonConvert.SerializeObject(request),
+                ResultCount = totalCount,
+                PageNumber = request.PageNumber,
+                PageSize = request.PageSize
+            }, cancellationToken);
 
             return ResultDto<PropertySearchResultDto>.Ok(result, "تم البحث بنجاح");
         }

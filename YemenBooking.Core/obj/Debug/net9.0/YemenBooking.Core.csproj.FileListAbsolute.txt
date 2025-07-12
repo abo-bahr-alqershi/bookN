@@ -43,3 +43,15 @@
 /home/ameen/Desktop/YemenBookN/Backend/YemenBooking.Core/obj/Debug/net9.0/YemenBooking.Core.pdb
 /home/ameen/Desktop/YemenBookN/Backend/YemenBooking.Core/obj/Debug/net9.0/ref/YemenBooking.Core.dll
 /home/ameen/Desktop/YemenBookN/Backend/YemenBooking.Core/obj/Debug/net9.0/YemenBooking.Core.sourcelink.json
+/home/ameen/Desktop/BookN/backend/YemenBooking.Core/bin/Debug/net9.0/YemenBooking.Core.deps.json
+/home/ameen/Desktop/BookN/backend/YemenBooking.Core/bin/Debug/net9.0/YemenBooking.Core.dll
+/home/ameen/Desktop/BookN/backend/YemenBooking.Core/bin/Debug/net9.0/YemenBooking.Core.pdb
+/home/ameen/Desktop/BookN/backend/YemenBooking.Core/obj/Debug/net9.0/YemenBooking.Core.GeneratedMSBuildEditorConfig.editorconfig
+/home/ameen/Desktop/BookN/backend/YemenBooking.Core/obj/Debug/net9.0/YemenBooking.Core.AssemblyInfoInputs.cache
+/home/ameen/Desktop/BookN/backend/YemenBooking.Core/obj/Debug/net9.0/YemenBooking.Core.AssemblyInfo.cs
+/home/ameen/Desktop/BookN/backend/YemenBooking.Core/obj/Debug/net9.0/YemenBooking.Core.csproj.CoreCompileInputs.cache
+/home/ameen/Desktop/BookN/backend/YemenBooking.Core/obj/Debug/net9.0/YemenBooking.Core.sourcelink.json
+/home/ameen/Desktop/BookN/backend/YemenBooking.Core/obj/Debug/net9.0/YemenBooking.Core.dll
+/home/ameen/Desktop/BookN/backend/YemenBooking.Core/obj/Debug/net9.0/refint/YemenBooking.Core.dll
+/home/ameen/Desktop/BookN/backend/YemenBooking.Core/obj/Debug/net9.0/YemenBooking.Core.pdb
+/home/ameen/Desktop/BookN/backend/YemenBooking.Core/obj/Debug/net9.0/ref/YemenBooking.Core.dll

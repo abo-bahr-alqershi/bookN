@@ -68,7 +68,9 @@ namespace YemenBooking.Application.Mappings
                 .ForMember(dest => dest.PricingMethod, opt => opt.MapFrom(src => src.PricingMethod));
 
             // User mapping
-            CreateMap<User, UserDto>();
+            CreateMap<User, UserDto>()
+                .ForMember(dest => dest.SettingsJson, opt => opt.MapFrom(src => src.SettingsJson))
+                .ForMember(dest => dest.FavoritesJson, opt => opt.MapFrom(src => src.FavoritesJson));
 
             // Role mapping
             CreateMap<Role, RoleDto>();
@@ -96,6 +98,9 @@ namespace YemenBooking.Application.Mappings
                 .ForMember(dest => dest.ReporterUserName, opt => opt.MapFrom(src => src.ReporterUser.Name))
                 .ForMember(dest => dest.ReportedUserName, opt => opt.MapFrom(src => src.ReportedUser != null ? src.ReportedUser.Name : string.Empty))
                 .ForMember(dest => dest.ReportedPropertyName, opt => opt.MapFrom(src => src.ReportedProperty != null ? src.ReportedProperty.Name : string.Empty));
+
+            // SearchLog mapping
+            CreateMap<SearchLog, SearchLogDto>();
         }
     }
 } 

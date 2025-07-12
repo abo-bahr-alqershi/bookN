@@ -49,6 +49,7 @@ namespace YemenBooking.Application.Handlers.Queries.PropertyImages
                 Caption = img.Caption,
                 AltText = img.AltText,
                 Tags = img.Tags,
+                Sizes = img.Sizes,
                 IsMain = img.IsMain,
                 DisplayOrder = img.DisplayOrder,
                 UploadedAt = img.UploadedAt,
